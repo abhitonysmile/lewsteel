@@ -60,8 +60,9 @@
 
         /* 1. STICKY HEADER SCROLL OFFSET FIX (96px breathing room above all sections) */
         html {
-            scroll-padding-top: 96px;
+            scroll-padding-top: 110px;
             scroll-behavior: smooth;
+            height: auto;
         }
 
         #top,
@@ -74,14 +75,17 @@
         #news,
         #contact,
         #more-services-wrapper {
-            scroll-margin-top: 96px;
+            scroll-margin-top: 110px;
         }
 
         body {
+            margin: 0;
+            padding: 0;
             font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
             color: #062F43;
             background-color: #FFFFFF;
             overflow-x: hidden;
+            min-height: 100%;
         }
 
         /* Custom Scrollbar */
@@ -221,6 +225,13 @@
     .via-\[\#1589B8\]\/35 {
         --tw-gradient-stops: rgb(76 131 188), rgb(166 181 188 / 35%) var(--tw-gradient-via-position), var(--tw-gradient-to);
     }
+    #stats-banner .w-5 {
+        width: 2.2rem;
+    }
+    #stats-banner .-mr-3 {
+        margin-right: -1.5rem;
+        margin-left: 7rem;
+    }
 
     @media (min-width: 1600px) {
         .max-w-\[1320px\] {
@@ -231,7 +242,7 @@
     <!-- =========================================================================
          1. STICKY HEADER & NAVIGATION BAR (EXACT MOCKUP MATCH)
          ========================================================================= -->
-    <header id="site-header" class="fixed top-0 inset-x-0 z-50 transition-all duration-300 bg-[#EAF3FA]/90 backdrop-blur-md border-b border-white/50">
+    <header id="site-header" class="sticky top-0 inset-x-0 z-50 transition-all duration-300 bg-[#EAF3FA]/90 backdrop-blur-md border-b border-white/50" style="position: sticky;">
         <!-- Scroll Progress Tension Indicator -->
         <div class="w-full h-[2.5px] bg-transparent overflow-hidden">
             <div id="scroll-progress-bar" class="h-full bg-gradient-to-r from-lew-tealBright via-lew-cyan to-lew-navy transition-all duration-75" style="width: 0%;"></div>
@@ -240,51 +251,37 @@
         <div class="max-w-[1320px] mx-auto px-4 sm:px-8 h-20 flex items-center justify-between transition-all duration-300" id="header-inner">
             
             <!-- Left: Exact Custom SVG LEW STEEL Brand Logo (A-Frame Geometric Mark + LEW / S T E E L) -->
-            <a href="#top" class="flex items-center gap-3 group focus:outline-none">
-                <svg viewBox="0 0 215 62" class="h-11 sm:h-12 w-auto transition-transform duration-300 group-hover:scale-[1.02]" aria-label="LEW STEEL Logo">
-                    <!-- Left Angled Geometric A-Frame / Steel Truss Icon -->
-                    <g transform="translate(2, 6)">
-                        <!-- Left Bright Teal Diagonal Leg -->
-                        <polygon points="24,2 34,2 13,44 2,44" fill="#1282A8"/>
-                        <!-- Right Dark Navy Diagonal Leg -->
-                        <polygon points="27,8 48,44 36,44 21,18" fill="#062F43"/>
-                        <!-- Inner Dark Navy Horizontal Base Triangle Cut -->
-                        <polygon points="17,33 34,33 39,44 12,44" fill="#062F43"/>
-                        <!-- Crisp White Diagonal Precision Gap -->
-                        <polygon points="18,30 33,30 35,34 16,34" fill="#EAF3FA"/>
-                    </g>
-
-                    <!-- Stacked Bold "LEW" and Wide-Spaced "S T E E L" -->
-                    <text x="64" y="34" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="31" fill="#062F43" letter-spacing="1.5">LEW</text>
-                    <text x="65" y="51" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="11.5" fill="#0B5E80" letter-spacing="7.2">STEEL</text>
-                </svg>
-            </a>
+            <button type="button" onclick="scrollToSection('top')" class="flex items-center gap-3 group focus:outline-none bg-transparent border-0 p-0 text-left">
+                <img src="https://raw.githubusercontent.com/abhitonysmile/lewsteel/main/assets/Lew-logo.png"
+                     alt="LEW Steel Logo"
+                     class="h-11 sm:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]" />
+            </button>
 
             <!-- Center: Navigation Links with Interactive Dropdowns (About v, Services v, Projects, Clients, News, Contact) -->
             <nav class="hidden lg:flex items-center space-x-8 text-[14.5px] font-semibold text-lew-navy">
                 <!-- About Dropdown -->
                 <div class="relative group py-2">
-                    <a href="#about" class="flex items-center gap-1.5 hover:text-lew-tealBright transition">
+                    <button type="button" onclick="scrollToSection('about')" class="flex items-center gap-1.5 hover:text-lew-tealBright transition text-left">
                         <span>About</span>
                         <i class="fa-solid fa-chevron-down text-[10px] text-lew-tealBright transition-transform duration-200 group-hover:rotate-180"></i>
-                    </a>
+                    </button>
                     <!-- Dropdown Menu -->
                     <div class="absolute left-0 top-full pt-2 w-60 opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-200 z-50">
                         <div class="bg-white rounded-xl shadow-card-hover border border-lew-border p-2 text-xs space-y-1">
-                            <a href="#about" class="flex items-center gap-2.5 px-3 py-2.5 rounded-lg hover:bg-lew-ice text-lew-navy font-semibold transition">
+                            <button type="button" onclick="scrollToSection('about')" class="w-full text-left flex items-center gap-2.5 px-3 py-2.5 rounded-lg hover:bg-lew-ice text-lew-navy font-semibold transition">
                                 <i class="fa-solid fa-building-shield text-lew-tealBright w-4"></i>
                                 <div>
                                     <div>About LEW Steel</div>
                                     <div class="text-[10px] font-normal text-lew-slate">Lokenath Engineering Works</div>
                                 </div>
-                            </a>
-                            <a href="#stats-banner" class="flex items-center gap-2.5 px-3 py-2.5 rounded-lg hover:bg-lew-ice text-lew-navy font-semibold transition">
+                            </button>
+                            <button type="button" onclick="scrollToSection('stats-banner')" class="w-full text-left flex items-center gap-2.5 px-3 py-2.5 rounded-lg hover:bg-lew-ice text-lew-navy font-semibold transition">
                                 <i class="fa-solid fa-award text-lew-tealBright w-4"></i>
                                 <div>
                                     <div>15+ Years Track Record</div>
                                     <div class="text-[10px] font-normal text-lew-slate">Zero Compromise on Quality</div>
                                 </div>
-                            </a>
+                            </button>
                             <button onclick="openCompanyProfileModal()" class="w-full text-left flex items-center gap-2.5 px-3 py-2.5 rounded-lg hover:bg-lew-ice text-lew-navy font-semibold transition">
                                 <i class="fa-solid fa-file-arrow-down text-lew-tealBright w-4"></i>
                                 <div>
@@ -298,20 +295,20 @@
 
                 <!-- Services Dropdown -->
                 <div class="relative group py-2">
-                    <a href="#services" class="flex items-center gap-1.5 hover:text-lew-tealBright transition">
+                    <button type="button" onclick="scrollToSection('services')" class="flex items-center gap-1.5 hover:text-lew-tealBright transition text-left">
                         <span>Services</span>
                         <i class="fa-solid fa-chevron-down text-[10px] text-lew-tealBright transition-transform duration-200 group-hover:rotate-180"></i>
-                    </a>
+                    </button>
                     <div class="absolute left-0 top-full pt-2 w-72 opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-200 z-50">
                         <div class="bg-white rounded-xl shadow-card-hover border border-lew-border p-2.5 text-xs grid grid-cols-1 gap-1">
                             <div class="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-lew-tealBright">Core Steel Solutions</div>
-                            <a href="#services" onclick="openServiceDetail(0)" class="px-2.5 py-1.5 rounded hover:bg-lew-ice flex items-center justify-between"><span>Steel Fabrication</span><i class="fa-solid fa-arrow-right text-[10px] text-lew-tealBright"></i></a>
-                            <a href="#services" onclick="openServiceDetail(1)" class="px-2.5 py-1.5 rounded hover:bg-lew-ice flex items-center justify-between"><span>Structural Engineering</span><i class="fa-solid fa-arrow-right text-[10px] text-lew-tealBright"></i></a>
-                            <a href="#services" onclick="openServiceDetail(2)" class="px-2.5 py-1.5 rounded hover:bg-lew-ice flex items-center justify-between"><span>Industrial Solutions</span><i class="fa-solid fa-arrow-right text-[10px] text-lew-tealBright"></i></a>
-                            <a href="#services" onclick="openServiceDetail(3)" class="px-2.5 py-1.5 rounded hover:bg-lew-ice flex items-center justify-between"><span>Conveyor Structures</span><i class="fa-solid fa-arrow-right text-[10px] text-lew-tealBright"></i></a>
-                            <a href="#services" onclick="openServiceDetail(4)" class="px-2.5 py-1.5 rounded hover:bg-lew-ice flex items-center justify-between"><span>Pressure Vessels</span><i class="fa-solid fa-arrow-right text-[10px] text-lew-tealBright"></i></a>
+                            <button type="button" onclick="openServiceDetail(0); scrollToSection('services')" class="w-full text-left px-2.5 py-1.5 rounded hover:bg-lew-ice flex items-center justify-between"><span>Steel Fabrication</span><i class="fa-solid fa-arrow-right text-[10px] text-lew-tealBright"></i></button>
+                            <button type="button" onclick="openServiceDetail(1); scrollToSection('services')" class="w-full text-left px-2.5 py-1.5 rounded hover:bg-lew-ice flex items-center justify-between"><span>Structural Engineering</span><i class="fa-solid fa-arrow-right text-[10px] text-lew-tealBright"></i></button>
+                            <button type="button" onclick="openServiceDetail(2); scrollToSection('services')" class="w-full text-left px-2.5 py-1.5 rounded hover:bg-lew-ice flex items-center justify-between"><span>Industrial Solutions</span><i class="fa-solid fa-arrow-right text-[10px] text-lew-tealBright"></i></button>
+                            <button type="button" onclick="openServiceDetail(3); scrollToSection('services')" class="w-full text-left px-2.5 py-1.5 rounded hover:bg-lew-ice flex items-center justify-between"><span>Conveyor Structures</span><i class="fa-solid fa-arrow-right text-[10px] text-lew-tealBright"></i></button>
+                            <button type="button" onclick="openServiceDetail(4); scrollToSection('services')" class="w-full text-left px-2.5 py-1.5 rounded hover:bg-lew-ice flex items-center justify-between"><span>Pressure Vessels</span><i class="fa-solid fa-arrow-right text-[10px] text-lew-tealBright"></i></button>
                             <div class="border-t border-lew-border my-1"></div>
-                            <a href="#services" onclick="expandAllServicesAndScroll(event)" class="px-2.5 py-2 rounded-lg bg-lew-ice text-lew-tealBright font-bold flex items-center justify-between hover:bg-lew-tealBright hover:text-white transition">
+                            <button type="button" onclick="expandAllServicesAndScroll(event)" class="w-full text-left px-2.5 py-2 rounded-lg bg-lew-ice text-lew-tealBright font-bold flex items-center justify-between hover:bg-lew-tealBright hover:text-white transition">
                                 <span>View All 11 LEW Facilities</span>
                                 <i class="fa-solid fa-plus-circle"></i>
                             </a>
@@ -319,10 +316,10 @@
                     </div>
                 </div>
 
-                <a href="#projects" class="hover:text-lew-tealBright transition py-2">Projects</a>
-                <a href="#clients" class="hover:text-lew-tealBright transition py-2">Clients</a>
-                <a href="#news" class="hover:text-lew-tealBright transition py-2">News</a>
-                <a href="#contact" class="hover:text-lew-tealBright transition py-2">Contact</a>
+                <button type="button" onclick="scrollToSection('projects')" class="hover:text-lew-tealBright transition py-2">Projects</button>
+                <button type="button" onclick="scrollToSection('clients')" class="hover:text-lew-tealBright transition py-2">Clients</button>
+                <button type="button" onclick="scrollToSection('news')" class="hover:text-lew-tealBright transition py-2">News</button>
+                <button type="button" onclick="scrollToSection('contact')" class="hover:text-lew-tealBright transition py-2">Contact</button>
             </nav>
 
             <!-- Right: "Get in Touch ->" Button + Mobile Menu Button -->
@@ -341,19 +338,19 @@
 
         <!-- Mobile Collapsible Navigation Drawer -->
         <div id="mobile-menu-drawer" class="hidden lg:hidden bg-white border-b border-lew-border px-6 py-5 space-y-3 shadow-lg">
-            <a href="#about" onclick="toggleMobileMenu()" class="block py-2 text-sm font-semibold text-lew-navy border-b border-slate-100">About LEW Steel</a>
-            <a href="#services" onclick="toggleMobileMenu()" class="block py-2 text-sm font-semibold text-lew-navy border-b border-slate-100">Services (All 11 Facilities)</a>
-            <a href="#projects" onclick="toggleMobileMenu()" class="block py-2 text-sm font-semibold text-lew-navy border-b border-slate-100">Projects</a>
-            <a href="#clients" onclick="toggleMobileMenu()" class="block py-2 text-sm font-semibold text-lew-navy border-b border-slate-100">Clients</a>
-            <a href="#news" onclick="toggleMobileMenu()" class="block py-2 text-sm font-semibold text-lew-navy border-b border-slate-100">Company News</a>
-            <a href="#contact" onclick="toggleMobileMenu()" class="block py-2 text-sm font-semibold text-lew-navy">Contact Us</a>
+            <button type="button" onclick="toggleMobileMenu(); scrollToSection('about')" class="block w-full text-left py-2 text-sm font-semibold text-lew-navy border-b border-slate-100">About LEW Steel</button>
+            <button type="button" onclick="toggleMobileMenu(); scrollToSection('services')" class="block w-full text-left py-2 text-sm font-semibold text-lew-navy border-b border-slate-100">Services (All 11 Facilities)</button>
+            <button type="button" onclick="toggleMobileMenu(); scrollToSection('projects')" class="block w-full text-left py-2 text-sm font-semibold text-lew-navy border-b border-slate-100">Projects</button>
+            <button type="button" onclick="toggleMobileMenu(); scrollToSection('clients')" class="block w-full text-left py-2 text-sm font-semibold text-lew-navy border-b border-slate-100">Clients</button>
+            <button type="button" onclick="toggleMobileMenu(); scrollToSection('news')" class="block w-full text-left py-2 text-sm font-semibold text-lew-navy border-b border-slate-100">Company News</button>
+            <button type="button" onclick="toggleMobileMenu(); scrollToSection('contact')" class="block w-full text-left py-2 text-sm font-semibold text-lew-navy">Contact Us</button>
         </div>
     </header>
 
     <!-- =========================================================================
          2. HERO SECTION WITH DIAGONAL STEEL RIBBONS & PARALLAX STRUCTURE
          ========================================================================= -->
-    <section id="top" class="relative pt-20 hero-sky-bg overflow-hidden">
+    <section id="top" class="relative hero-sky-bg overflow-hidden">
 
         <div class="max-w-[1320px] mx-auto relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-12 items-center min-h-[520px] lg:min-h-[580px]">
@@ -378,16 +375,16 @@
                     </p>
 
                     <div class="flex flex-wrap items-center gap-4">
-                        <a href="#projects" 
+                        <button type="button" onclick="scrollToSection('projects')" 
                            class="inline-flex items-center gap-2.5 bg-lew-tealDark hover:bg-lew-tealBright text-white font-semibold text-sm px-6 py-3.5 rounded-md shadow-md hover:shadow-lg transition-all duration-300 group">
                             <span>Explore Our Work</span>
                             <i class="fa-solid fa-arrow-right text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
-                        </a>
+                        </button>
 
-                        <a href="#services" 
+                        <button type="button" onclick="scrollToSection('services')" 
                            class="inline-flex items-center justify-center bg-white/85 hover:bg-white text-lew-navy border border-[#7FAEC8] hover:border-lew-navy font-semibold text-sm px-7 py-3.5 rounded-md shadow-sm transition-all duration-300">
                             <span>Our Services</span>
-                        </a>
+                        </button>
                     </div>
                 </div>
 
@@ -417,9 +414,7 @@
         <div id="stats-banner" class="max-w-[1320px] mx-auto px-0 sm:px-6 lg:px-8 relative z-30 -mt-2 sm:-mt-4 lg:-mt-6 pb-4">
             <div class="relative flex items-stretch">
                 <div class="hidden sm:block w-5 bg-[#0E769B] -mr-3 z-20"
-                     style="clip-path: polygon(75% 0, 100% 0, 25% 100%, 0 100%);"></div>
-                <div class="hidden sm:block w-3 bg-[#47B0DA] -mr-1.5 z-20"
-                     style="clip-path: polygon(75% 0, 100% 0, 25% 100%, 0 100%);"></div>
+                     style="clip-path: polygon(80% 0, 100% 0, 20% 100%, 0 100%);"></div>
 
                 <div class="stats-angled-bar w-full text-white py-5 sm:py-6 px-6 sm:px-12 shadow-card">
                     <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-0 lg:divide-x lg:divide-white/15">
@@ -506,7 +501,7 @@
                     <div class="about-diagonal-photo-wrap w-full h-full overflow-hidden rounded-l-md relative bg-lew-ice">
                         <img id="about-parallax-img"
                              data-asset-name="01_steel_framework_closeup.jpg"
-                             src="01_steel_framework_closeup.jpg" 
+                             src="https://images.unsplash.com/photo-1541888946425-d09bb18086f6?auto=format&fit=crop&w=1600&q=85" 
                              alt="Heavy Steel Structural Girders and Trusses" 
                              class="w-full h-full object-cover object-center scale-110 transition-transform duration-200 ease-out"
                              onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&w=1200&q=85';">
@@ -739,9 +734,9 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                         
                         <!-- Card 6: Railway Channel Sleepers -->
-                        <div onclick="openServiceDetail(5)" class="group relative h-[215px] rounded-[10px] overflow-hidden shadow-card hover:shadow-card-hover cursor-pointer">
-                            <img data-asset-name="09_elevated_steel_structure.jpg"
-                                 src="09_elevated_steel_structure.jpg" 
+                        <div onclick="openServiceDetail(5)" class="group relative h-[230px] rounded-[10px] overflow-hidden shadow-card hover:shadow-card-hover cursor-pointer">
+                            <img data-asset-name="05_conveyor_structure.jpg"
+                                 src="https://raw.githubusercontent.com/abhitonysmile/lewsteel/main/assets/05_conveyor_structure.jpg" 
                                  alt="Railway Channel Sleepers" 
                                  class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700"
                                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=700&q=80';">
@@ -761,9 +756,9 @@
                         </div>
 
                         <!-- Card 7: Pipes of (Oil, Gas & Air) -->
-                        <div onclick="openServiceDetail(6)" class="group relative h-[215px] rounded-[10px] overflow-hidden shadow-card hover:shadow-card-hover cursor-pointer">
-                            <img data-asset-name="03_industrial_pipelines.jpg"
-                                 src="03_industrial_pipelines.jpg" 
+                        <div onclick="openServiceDetail(6)" class="group relative h-[230px] rounded-[10px] overflow-hidden shadow-card hover:shadow-card-hover cursor-pointer">
+                            <img data-asset-name="06_pressure_vessels.jpg"
+                                 src="https://raw.githubusercontent.com/abhitonysmile/lewsteel/main/assets/06_pressure_vessels.jpg" 
                                  alt="Pipe of Oil, Gas and Air" 
                                  class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700"
                                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=700&q=80';">
@@ -783,9 +778,9 @@
                         </div>
 
                         <!-- Card 8: Towers and Mast Supply -->
-                        <div onclick="openServiceDetail(7)" class="group relative h-[215px] rounded-[10px] overflow-hidden shadow-card hover:shadow-card-hover cursor-pointer">
+                        <div onclick="openServiceDetail(7)" class="group relative h-[230px] rounded-[10px] overflow-hidden shadow-card hover:shadow-card-hover cursor-pointer">
                             <img data-asset-name="07_refinery_plant.jpg"
-                                 src="07_refinery_plant.jpg" 
+                                 src="https://raw.githubusercontent.com/abhitonysmile/lewsteel/main/assets/07_refinery_plant.jpg" 
                                  alt="Towers and Mast Supply" 
                                  class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700"
                                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&w=700&q=80';">
@@ -805,9 +800,9 @@
                         </div>
 
                         <!-- Card 9: Fabricated Girders -->
-                        <div onclick="openServiceDetail(8)" class="group relative h-[215px] rounded-[10px] overflow-hidden shadow-card hover:shadow-card-hover cursor-pointer">
+                        <div onclick="openServiceDetail(8)" class="group relative h-[230px] rounded-[10px] overflow-hidden shadow-card hover:shadow-card-hover cursor-pointer">
                             <img data-asset-name="01_steel_framework_closeup.jpg"
-                                 src="01_steel_framework_closeup.jpg" 
+                                 src="https://raw.githubusercontent.com/abhitonysmile/lewsteel/main/assets/01_steel_framework_closeup.jpg" 
                                  alt="Fabricated Girders" 
                                  class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700"
                                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1541888946425-d09bb18086f6?auto=format&fit=crop&w=700&q=80';">
@@ -827,9 +822,9 @@
                         </div>
 
                         <!-- Card 10: Furnace Spares & Small Boilers -->
-                        <div onclick="openServiceDetail(9)" class="group relative h-[215px] rounded-[10px] overflow-hidden shadow-card hover:shadow-card-hover cursor-pointer">
-                            <img data-asset-name="08_steel_building_project.jpg"
-                                 src="08_steel_building_project.jpg" 
+                        <div onclick="openServiceDetail(9)" class="group relative h-[230px] rounded-[10px] overflow-hidden shadow-card hover:shadow-card-hover cursor-pointer">
+                            <img data-asset-name="04_industrial_facility.jpg"
+                                 src="https://raw.githubusercontent.com/abhitonysmile/lewsteel/main/assets/04_industrial_facility.jpg" 
                                  alt="Furnace Spares and Small Boilers" 
                                  class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700"
                                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=700&q=80';">
@@ -849,9 +844,9 @@
                         </div>
 
                         <!-- Card 11: Annealing Hoods, Tanks & Columns -->
-                        <div onclick="openServiceDetail(10)" class="group relative h-[215px] rounded-[10px] overflow-hidden shadow-card hover:shadow-card-hover cursor-pointer">
+                        <div onclick="openServiceDetail(10)" class="group relative h-[230px] rounded-[10px] overflow-hidden shadow-card hover:shadow-card-hover cursor-pointer">
                             <img data-asset-name="06_pressure_vessels.jpg"
-                                 src="06_pressure_vessels.jpg" 
+                                 src="https://raw.githubusercontent.com/abhitonysmile/lewsteel/main/assets/06_pressure_vessels.jpg" 
                                  alt="Annealing Hoods, Tanks and Columns" 
                                  class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700"
                                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=700&q=80';">
@@ -920,7 +915,7 @@
                             <div onclick="openProjectLightbox(0)" class="group relative h-52 sm:h-56 rounded-lg overflow-hidden shadow-card cursor-pointer bg-lew-ice">
                                 <img id="proj-img-0"
                                      data-asset-name="07_refinery_plant.jpg"
-                                     src="07_refinery_plant.jpg" 
+                                     src="https://raw.githubusercontent.com/abhitonysmile/lewsteel/main/assets/07_refinery_plant.jpg" 
                                      alt="Petrochemical Towers & Process Columns" 
                                      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                                      onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=700&q=80';">
@@ -932,8 +927,8 @@
                             <!-- Project Card 2 (Mapped to 08_steel_building_project.jpg + Industrial Fallback) -->
                             <div onclick="openProjectLightbox(1)" class="group relative h-52 sm:h-56 rounded-lg overflow-hidden shadow-card cursor-pointer bg-lew-ice">
                                 <img id="proj-img-1"
-                                     data-asset-name="08_steel_building_project.jpg"
-                                     src="08_steel_building_project.jpg" 
+                                     data-asset-name="04_industrial_facility.jpg"
+                                     src="https://raw.githubusercontent.com/abhitonysmile/lewsteel/main/assets/04_industrial_facility.jpg" 
                                      alt="Multi-Story Industrial Steel Frame" 
                                      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                                      onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1541888946425-d09bb18086f6?auto=format&fit=crop&w=700&q=80';">
@@ -945,8 +940,8 @@
                             <!-- Project Card 3 (Mapped to 09_elevated_steel_structure.jpg + Industrial Fallback) -->
                             <div onclick="openProjectLightbox(2)" class="group relative h-52 sm:h-56 rounded-lg overflow-hidden shadow-card cursor-pointer bg-lew-ice">
                                 <img id="proj-img-2"
-                                     data-asset-name="09_elevated_steel_structure.jpg"
-                                     src="09_elevated_steel_structure.jpg" 
+                                     data-asset-name="05_conveyor_structure.jpg"
+                                     src="https://raw.githubusercontent.com/abhitonysmile/lewsteel/main/assets/05_conveyor_structure.jpg" 
                                      alt="Heavy Overhead Crane Girders & Roof Truss" 
                                      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                                      onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&w=700&q=80';">
@@ -1072,8 +1067,8 @@
                     <!-- News Card 1 -->
                     <article onclick="openNewsModal(0)" class="bg-white rounded-xl overflow-hidden border border-[#DCE8F2] shadow-sm hover:shadow-card-hover transition-all duration-300 cursor-pointer group el-motion-fade-up">
                         <div class="h-44 overflow-hidden bg-lew-ice">
-                            <img data-asset-name="02_steel_building_exterior.jpg"
-                                 src="02_steel_building_exterior.jpg" 
+                            <img data-asset-name="01_steel_framework_closeup.jpg"
+                                 src="https://raw.githubusercontent.com/abhitonysmile/lewsteel/refs/heads/main/assets/Lew%20bags%20deal.webp" 
                                  alt="LEW Steel bags major infrastructure project" 
                                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1541888946425-d09bb18086f6?auto=format&fit=crop&w=700&q=80';">
@@ -1090,7 +1085,7 @@
                     <article onclick="openNewsModal(1)" class="bg-white rounded-xl overflow-hidden border border-[#DCE8F2] shadow-sm hover:shadow-card-hover transition-all duration-300 cursor-pointer group el-motion-fade-up" style="transition-delay: 100ms;">
                         <div class="h-44 overflow-hidden bg-lew-ice">
                             <img data-asset-name="05_conveyor_structure.jpg"
-                                 src="05_conveyor_structure.jpg" 
+                                 src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=700&q=80" 
                                  alt="Expansion of fabrication facilities in Kolkata" 
                                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=700&q=80';">
@@ -1106,8 +1101,8 @@
                     <!-- News Card 3 -->
                     <article onclick="openNewsModal(2)" class="bg-white rounded-xl overflow-hidden border border-[#DCE8F2] shadow-sm hover:shadow-card-hover transition-all duration-300 cursor-pointer group el-motion-fade-up" style="transition-delay: 200ms;">
                         <div class="h-44 overflow-hidden bg-lew-ice">
-                            <img data-asset-name="09_elevated_steel_structure.jpg"
-                                 src="09_elevated_steel_structure.jpg" 
+                            <img data-asset-name="05_conveyor_structure.jpg"
+                                 src="'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=700&q=80" 
                                  alt="Commitment to Quality and Safety" 
                                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                  onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=700&q=80';">
@@ -1174,18 +1169,11 @@
                 
                 <!-- 1. LEW STEEL Brand Logo (3 Cols) -->
                 <div class="lg:col-span-3 flex items-center justify-start lg:border-r lg:border-[#CFE0EC] lg:pr-6">
-                    <a href="#top" class="inline-block">
-                        <svg viewBox="0 0 215 62" class="h-11 w-auto" aria-label="LEW STEEL Logo">
-                            <g transform="translate(2, 6)">
-                                <polygon points="24,2 34,2 13,44 2,44" fill="#1282A8"/>
-                                <polygon points="27,8 48,44 36,44 21,18" fill="#062F43"/>
-                                <polygon points="17,33 34,33 39,44 12,44" fill="#062F43"/>
-                                <polygon points="18,30 33,30 35,34 16,34" fill="#EDF3F8"/>
-                            </g>
-                            <text x="64" y="34" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="31" fill="#062F43" letter-spacing="1.5">LEW</text>
-                            <text x="65" y="51" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="11.5" fill="#0B5E80" letter-spacing="7.2">STEEL</text>
-                        </svg>
-                    </a>
+                    <button type="button" onclick="scrollToSection('top')" class="inline-block bg-transparent border-0 p-0 text-left">
+                        <img src="https://raw.githubusercontent.com/abhitonysmile/lewsteel/main/assets/Lew-logo.png"
+                             alt="LEW Steel Logo"
+                             class="h-11 w-auto object-contain" />
+                    </button>
                 </div>
 
                 <!-- 2. Email: info@lewsteel.com (2.5 Cols) -->
@@ -1215,14 +1203,14 @@
 
                 <!-- 5. Social Icons: LinkedIn & YouTube (2 Cols) -->
                 <div class="lg:col-span-2 flex items-center lg:justify-center gap-3">
-                    <a href="#contact" onclick="openContactModal('Connect via LinkedIn')" aria-label="LinkedIn" 
+                    <button type="button" onclick="openContactModal('Connect via LinkedIn')" aria-label="LinkedIn" 
                        class="w-9 h-9 rounded-full bg-lew-navy hover:bg-lew-tealBright text-white flex items-center justify-center transition shadow-sm">
                         <i class="fa-brands fa-linkedin-in text-sm"></i>
-                    </a>
-                    <a href="#contact" onclick="openContactModal('Video Tour Inquiry')" aria-label="YouTube" 
+                    </button>
+                    <button type="button" onclick="openContactModal('Video Tour Inquiry')" aria-label="YouTube" 
                        class="w-9 h-9 rounded-full bg-lew-navy hover:bg-lew-tealBright text-white flex items-center justify-center transition shadow-sm">
                         <i class="fa-brands fa-youtube text-sm"></i>
-                    </a>
+                    </button>
                 </div>
 
             </div>
@@ -1397,7 +1385,7 @@
     <input type="file" id="local-asset-file-input" multiple accept="image/*" class="hidden" onchange="handleLocalAssetUpload(event)">
     <input type="file" id="single-image-swap-input" accept="image/*" class="hidden" onchange="handleSingleImageSwap(event)">
 
-    <div class="fixed bottom-4 right-4 z-40 flex flex-wrap items-center gap-2">
+    <div class="fixed bottom-4 right-4 z-40 flex flex-wrap items-center gap-2" style="display: none;" id="asset-loader-buttons">
         <button onclick="document.getElementById('local-asset-file-input').click()" 
                 title="Select your unzipped LEW_Steel_Separate_Website_Images files or click any image while holding Alt to swap it"
                 class="bg-lew-tealBright hover:bg-lew-navy text-white text-xs font-bold px-4 py-2.5 rounded-full shadow-lg border border-white/20 flex items-center gap-2 transition-all duration-300">
@@ -1614,16 +1602,16 @@
         const projectSlides = [
             [
                 { img: "07_refinery_plant.jpg", fallback: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=700&q=80", caption: "Process Columns & Towers" },
-                { img: "08_steel_building_project.jpg", fallback: "https://images.unsplash.com/photo-1541888946425-d09bb18086f6?auto=format&fit=crop&w=700&q=80", caption: "Multi-Bay Steel Structure" },
-                { img: "09_elevated_steel_structure.jpg", fallback: "https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&w=700&q=80", caption: "Heavy Girders & Conveyor Bay" }
+                { img: "04_industrial_facility.jpg", fallback: "https://images.unsplash.com/photo-1541888946425-d09bb18086f6?auto=format&fit=crop&w=700&q=80", caption: "Multi-Bay Steel Structure" },
+                { img: "05_conveyor_structure.jpg", fallback: "https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&w=700&q=80", caption: "Heavy Girders & Conveyor Bay" }
             ],
             [
-                { img: "03_industrial_pipelines.jpg", fallback: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=700&q=80", caption: "Oil, Gas & Air Pipeline Bridge" },
+                { img: "06_pressure_vessels.jpg", fallback: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=700&q=80", caption: "Oil, Gas & Air Pipeline Bridge" },
                 { img: "05_conveyor_structure.jpg", fallback: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=700&q=80", caption: "Bulk Material Conveyor Gallery" },
                 { img: "01_steel_framework_closeup.jpg", fallback: "https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&w=700&q=80", caption: "High-Mast & Transmission Towers" }
             ],
             [
-                { img: "02_steel_building_exterior.jpg", fallback: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=700&q=80", caption: "Railway Bridge Channel Sleepers" },
+                { img: "01_steel_framework_closeup.jpg", fallback: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=700&q=80", caption: "Railway Bridge Channel Sleepers" },
                 { img: "06_pressure_vessels.jpg", fallback: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=700&q=80", caption: "Annealing Hoods & Process Vessels" },
                 { img: "04_industrial_facility.jpg", fallback: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=700&q=80", caption: "Furnace Spares & Industrial Boilers" }
             ]
@@ -1846,6 +1834,21 @@
         }, { passive: true });
 
         /* 8. INITIALIZE SMOOTH ANCHOR OFFSET, IMAGE SWAPPER & ENTRANCE ANIMATIONS */
+        function scrollToElement(element, offset = 110) {
+            if (!element) return;
+            const targetTop = element.getBoundingClientRect().top + (window.scrollY || window.pageYOffset || 0) - offset;
+            window.scrollTo({
+                top: Math.max(0, targetTop),
+                behavior: 'smooth'
+            });
+        }
+
+        function scrollToSection(sectionId) {
+            const targetEl = document.getElementById(sectionId);
+            if (!targetEl) return;
+            scrollToElement(targetEl, 110);
+        }
+
         let activeImageToSwap = null;
 
         function handleLocalAssetUpload(event) {
@@ -1896,7 +1899,7 @@
         }
 
         window.onload = function () {
-            // Smooth Scroll Interceptor for all <a href="#..."> links with exact 96px Sticky Header Offset
+            // Guard against stray hash links and keep Google Sites embeds on the same safe offset logic.
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     const targetId = this.getAttribute('href');
@@ -1904,11 +1907,7 @@
                     const targetEl = document.querySelector(targetId);
                     if (targetEl) {
                         e.preventDefault();
-                        const y = targetEl.getBoundingClientRect().top + window.scrollY - 96;
-                        window.scrollTo({
-                            top: Math.max(0, y),
-                            behavior: 'smooth'
-                        });
+                        scrollToElement(targetEl, 110);
                     }
                 });
             });
