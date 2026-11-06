@@ -220,17 +220,20 @@
                 max-width: 100%;
         }
     #hero-ribbon-accent.w-32 {
-        width: 17.3rem;
+        width: 36%;
     }
     .via-\[\#1589B8\]\/35 {
         --tw-gradient-stops: rgb(76 131 188), rgb(166 181 188 / 35%) var(--tw-gradient-via-position), var(--tw-gradient-to);
     }
     #stats-banner .w-5 {
-        width: 2.2rem;
+        width: 2.4rem;
     }
     #stats-banner .-mr-3 {
         margin-right: -1.5rem;
         margin-left: 7rem;
+    }
+    .logo img {
+        height: 2.4rem;
     }
 
     @media (min-width: 1600px) {
@@ -248,7 +251,7 @@
             <div id="scroll-progress-bar" class="h-full bg-gradient-to-r from-lew-tealBright via-lew-cyan to-lew-navy transition-all duration-75" style="width: 0%;"></div>
         </div>
 
-        <div class="max-w-[1320px] mx-auto px-4 sm:px-8 h-20 flex items-center justify-between transition-all duration-300" id="header-inner">
+        <div class="max-w-[1320px] mx-auto px-4 sm:px-8 h-20 flex items-center justify-between transition-all duration-300 logo" id="header-inner">
             
             <!-- Left: Exact Custom SVG LEW STEEL Brand Logo (A-Frame Geometric Mark + LEW / S T E E L) -->
             <button type="button" onclick="scrollToSection('top')" class="flex items-center gap-3 group focus:outline-none bg-transparent border-0 p-0 text-left">
@@ -900,7 +903,7 @@
                         </p>
 
                         <div class="pt-1">
-                            <button onclick="cycleProjectsSlide()" 
+                            <button type="button" 
                                     class="inline-flex items-center gap-2.5 bg-lew-tealDark hover:bg-lew-tealBright text-white font-semibold text-xs sm:text-sm px-5 py-3 rounded-md shadow-sm transition-all duration-300 group">
                                 <span>View All Projects</span>
                                 <i class="fa-solid fa-arrow-right text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
@@ -951,12 +954,6 @@
                             </div>
                         </div>
 
-                        <!-- Pagination Dots (Exact Mockup Match) -->
-                        <div class="flex items-center justify-center gap-2 mt-5">
-                            <button onclick="setProjectSlide(0)" id="proj-dot-0" class="w-2.5 h-2.5 rounded-full bg-lew-cyan transition-all" aria-label="Slide 1"></button>
-                            <button onclick="setProjectSlide(1)" id="proj-dot-1" class="w-2.5 h-2.5 rounded-full border border-slate-300 bg-transparent hover:border-lew-cyan transition-all" aria-label="Slide 2"></button>
-                            <button onclick="setProjectSlide(2)" id="proj-dot-2" class="w-2.5 h-2.5 rounded-full border border-slate-300 bg-transparent hover:border-lew-cyan transition-all" aria-label="Slide 3"></button>
-                        </div>
                     </div>
 
                 </div>
@@ -1598,66 +1595,11 @@
             modal.classList.remove('flex');
         }
 
-        /* 4. PROJECTS CAROUSEL SLIDES (Mapped to Uploaded Assets + Verified Fallbacks) */
-        const projectSlides = [
-            [
-                { img: "07_refinery_plant.jpg", fallback: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=700&q=80", caption: "Process Columns & Towers" },
-                { img: "04_industrial_facility.jpg", fallback: "https://images.unsplash.com/photo-1541888946425-d09bb18086f6?auto=format&fit=crop&w=700&q=80", caption: "Multi-Bay Steel Structure" },
-                { img: "05_conveyor_structure.jpg", fallback: "https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&w=700&q=80", caption: "Heavy Girders & Conveyor Bay" }
-            ],
-            [
-                { img: "06_pressure_vessels.jpg", fallback: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=700&q=80", caption: "Oil, Gas & Air Pipeline Bridge" },
-                { img: "05_conveyor_structure.jpg", fallback: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=700&q=80", caption: "Bulk Material Conveyor Gallery" },
-                { img: "01_steel_framework_closeup.jpg", fallback: "https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&w=700&q=80", caption: "High-Mast & Transmission Towers" }
-            ],
-            [
-                { img: "01_steel_framework_closeup.jpg", fallback: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=700&q=80", caption: "Railway Bridge Channel Sleepers" },
-                { img: "06_pressure_vessels.jpg", fallback: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=700&q=80", caption: "Annealing Hoods & Process Vessels" },
-                { img: "04_industrial_facility.jpg", fallback: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=700&q=80", caption: "Furnace Spares & Industrial Boilers" }
-            ]
-        ];
-        let currentProjectSlide = 0;
+        /* 4. PROJECTS GRID (static, no carousel) */
         const uploadedAssetBlobMap = {};
 
-        function setProjectSlide(slideIdx) {
-            currentProjectSlide = slideIdx;
-            const set = projectSlides[slideIdx];
-            set.forEach((item, idx) => {
-                const imgEl = document.getElementById(`proj-img-${idx}`);
-                const capEl = document.getElementById(`proj-caption-${idx}`);
-                if (imgEl && capEl) {
-                    imgEl.style.opacity = '0.3';
-                    setTimeout(() => {
-                        imgEl.setAttribute('data-asset-name', item.img);
-                        imgEl.onerror = function () {
-                            this.onerror = null;
-                            this.src = item.fallback;
-                        };
-                        imgEl.src = uploadedAssetBlobMap[item.img.toLowerCase()] || item.img;
-                        capEl.textContent = item.caption;
-                        imgEl.style.opacity = '1';
-                    }, 160);
-                }
-            });
-
-            [0, 1, 2].forEach(i => {
-                const dot = document.getElementById(`proj-dot-${i}`);
-                if (i === slideIdx) {
-                    dot.className = "w-2.5 h-2.5 rounded-full bg-lew-cyan transition-all";
-                } else {
-                    dot.className = "w-2.5 h-2.5 rounded-full border border-slate-300 bg-transparent hover:border-lew-cyan transition-all";
-                }
-            });
-        }
-
-        function cycleProjectsSlide() {
-            const next = (currentProjectSlide + 1) % projectSlides.length;
-            setProjectSlide(next);
-        }
-
         function openProjectLightbox(cardIdx) {
-            const item = projectSlides[currentProjectSlide][cardIdx];
-            openServiceDetail((currentProjectSlide * 3 + cardIdx) % lewServicesData.length);
+            return;
         }
 
         /* 5. NEWS MODAL DATA & HANDLERS */
