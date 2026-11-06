@@ -1,0 +1,1967 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEWSteel | Engineering Excellence in Steel - Lokenath Engineering Works</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Plus Jakarta Sans & Inter (Exact Geometric Sans Match) + JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        lew: {
+                            navy: '#062F43',       /* Primary Dark Steel Petrol / Navy */
+                            navyDark: '#042231',   /* Deepest Navy for Hover & Footer Icons */
+                            tealDark: '#073B54',   /* Button Fill Dark Petrol-Teal */
+                            teal: '#0A5C7E',       /* Rich Industrial Teal */
+                            tealBright: '#0E769B', /* "Stronger Tomorrow" & Eyebrow Teal */
+                            cyan: '#1589B8',       /* Bright Steel Cyan Accent & Dots */
+                            cyanLight: '#38A8D6',  /* Diagonal Ribbon Highlight */
+                            ice: '#EDF4F9',        /* Ice Steel Section Background */
+                            iceLight: '#F4F8FB',   /* Lighter Sky Tint */
+                            border: '#D5E4EF',     /* Crisp Hairline Steel Border */
+                            slate: '#475866'       /* Body Copy Muted Slate */
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', '"Inter"', 'sans-serif'],
+                        body: ['"Inter"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace']
+                    },
+                    boxShadow: {
+                        'card': '0 10px 30px -8px rgba(6, 47, 67, 0.10)',
+                        'card-hover': '0 20px 40px -12px rgba(6, 47, 67, 0.22)',
+                        'nav': '0 4px 24px -4px rgba(6, 47, 67, 0.08)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --lew-navy: #062F43;
+            --lew-teal-dark: #073B54;
+            --lew-teal: #0A5C7E;
+            --lew-teal-bright: #0E769B;
+            --lew-cyan: #1589B8;
+            --lew-ice: #EDF4F9;
+            --lew-white: #FFFFFF;
+        }
+
+        /* 1. STICKY HEADER SCROLL OFFSET FIX (96px breathing room above all sections) */
+        html {
+            scroll-padding-top: 96px;
+            scroll-behavior: smooth;
+        }
+
+        #top,
+        #stats,
+        #stats-banner,
+        #about,
+        #services,
+        #projects,
+        #clients,
+        #news,
+        #contact,
+        #more-services-wrapper {
+            scroll-margin-top: 96px;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+            color: #062F43;
+            background-color: #FFFFFF;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #EDF4F9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #0E769B;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #062F43;
+        }
+
+        /* =====================================================================
+           ELEMENTOR-READY SCROLLING MOTION & ENTRANCE ANIMATION CLASSES
+           ===================================================================== */
+        .el-motion-fade-up {
+            opacity: 0;
+            transform: translateY(34px);
+            transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+        .el-motion-fade-left {
+            opacity: 0;
+            transform: translateX(-38px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+        .el-motion-fade-right {
+            opacity: 0;
+            transform: translateX(38px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+        .el-motion-scale {
+            opacity: 0;
+            transform: scale(0.94) translateY(20px);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+
+        .el-motion-visible {
+            opacity: 1 !important;
+            transform: translate(0, 0) scale(1) !important;
+        }
+
+        /* =====================================================================
+           GEOMETRIC DIAGONAL CLIP-PATHS & RIBBONS (MATCHING MOCKUP)
+           ===================================================================== */
+        /* Hero Sky & Diagonal Steel Atmosphere */
+        .hero-sky-bg {
+            background: linear-gradient(115deg, #E8F2FA 0%, #F4F9FD 42%, #D7EAF8 75%, #C2E0F4 100%);
+        }
+
+        /* Hero Right Diagonal Cutout Container */
+        @media (min-width: 1024px) {
+            .hero-diagonal-photo-wrap {
+                clip-path: polygon(24% 0%, 100% 0%, 100% 100%, 0% 100%);
+            }
+            .about-diagonal-photo-wrap {
+                clip-path: polygon(0% 0%, 100% 0%, 76% 100%, 0% 100%);
+            }
+        }
+
+        /* Stats Banner Angled Left Edge & Gradient */
+        .stats-angled-bar {
+            background: linear-gradient(90deg, #062F43 0%, #0A4B69 50%, #062F43 100%);
+            clip-path: polygon(28px 0%, 100% 0%, 100% 100%, 0% 100%);
+        }
+        @media (max-width: 640px) {
+            .stats-angled-bar {
+                clip-path: none;
+            }
+        }
+
+        /* Service Card Gradient Overlay */
+        .service-card-overlay {
+            background: linear-gradient(180deg, rgba(6, 47, 67, 0) 35%, rgba(6, 47, 67, 0.72) 72%, rgba(4, 34, 49, 0.94) 100%);
+        }
+
+        /* Expandable Services Smooth Drawer Transition */
+        #more-services-wrapper {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.75s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.55s ease, margin-top 0.45s ease;
+        }
+        #more-services-wrapper.expanded {
+            max-height: 1800px;
+            opacity: 1;
+            margin-top: 1.5rem;
+        }
+
+        /* Pre-Footer CTA Banner Diagonal Speed Stripes */
+        .cta-banner-bg {
+            background: linear-gradient(90deg, #062F43 0%, #0A5272 58%, #0C658B 100%);
+        }
+
+        /* Footer Architectural Geometric Facet Watermark */
+        .footer-geometric-bg {
+            background-color: #EDF3F8;
+            background-image: 
+                linear-gradient(125deg, rgba(255,255,255,0.65) 0%, rgba(255,255,255,0) 45%),
+                linear-gradient(305deg, rgba(14, 118, 155, 0.05) 10%, transparent 55%);
+        }
+
+        /* Eyebrow Horizontal Line Helper */
+        .eyebrow-line {
+            display: inline-block;
+            width: 24px;
+            height: 2px;
+            background-color: #0E769B;
+            vertical-align: middle;
+        }
+        .eyebrow-line-light {
+            display: inline-block;
+            width: 20px;
+            height: 1.5px;
+            background-color: #99C5DA;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body class="selection:bg-lew-tealBright selection:text-white">
+<style>
+    /** Custom CSS Styles */
+    .max-w-\[1320px\] {
+                max-width: 100%;
+        }
+    #hero-ribbon-accent.w-32 {
+        width: 17.3rem;
+    }
+    .via-\[\#1589B8\]\/35 {
+        --tw-gradient-stops: rgb(76 131 188), rgb(166 181 188 / 35%) var(--tw-gradient-via-position), var(--tw-gradient-to);
+    }
+
+    @media (min-width: 1600px) {
+        .max-w-\[1320px\] {
+            max-width: 1520px;
+        }
+    }
+</style>
+    <!-- =========================================================================
+         1. STICKY HEADER & NAVIGATION BAR (EXACT MOCKUP MATCH)
+         ========================================================================= -->
+    <header id="site-header" class="fixed top-0 inset-x-0 z-50 transition-all duration-300 bg-[#EAF3FA]/90 backdrop-blur-md border-b border-white/50">
+        <!-- Scroll Progress Tension Indicator -->
+        <div class="w-full h-[2.5px] bg-transparent overflow-hidden">
+            <div id="scroll-progress-bar" class="h-full bg-gradient-to-r from-lew-tealBright via-lew-cyan to-lew-navy transition-all duration-75" style="width: 0%;"></div>
+        </div>
+
+        <div class="max-w-[1320px] mx-auto px-4 sm:px-8 h-20 flex items-center justify-between transition-all duration-300" id="header-inner">
+            
+            <!-- Left: Exact Custom SVG LEW STEEL Brand Logo (A-Frame Geometric Mark + LEW / S T E E L) -->
+            <a href="#top" class="flex items-center gap-3 group focus:outline-none">
+                <svg viewBox="0 0 215 62" class="h-11 sm:h-12 w-auto transition-transform duration-300 group-hover:scale-[1.02]" aria-label="LEW STEEL Logo">
+                    <!-- Left Angled Geometric A-Frame / Steel Truss Icon -->
+                    <g transform="translate(2, 6)">
+                        <!-- Left Bright Teal Diagonal Leg -->
+                        <polygon points="24,2 34,2 13,44 2,44" fill="#1282A8"/>
+                        <!-- Right Dark Navy Diagonal Leg -->
+                        <polygon points="27,8 48,44 36,44 21,18" fill="#062F43"/>
+                        <!-- Inner Dark Navy Horizontal Base Triangle Cut -->
+                        <polygon points="17,33 34,33 39,44 12,44" fill="#062F43"/>
+                        <!-- Crisp White Diagonal Precision Gap -->
+                        <polygon points="18,30 33,30 35,34 16,34" fill="#EAF3FA"/>
+                    </g>
+
+                    <!-- Stacked Bold "LEW" and Wide-Spaced "S T E E L" -->
+                    <text x="64" y="34" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="31" fill="#062F43" letter-spacing="1.5">LEW</text>
+                    <text x="65" y="51" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="11.5" fill="#0B5E80" letter-spacing="7.2">STEEL</text>
+                </svg>
+            </a>
+
+            <!-- Center: Navigation Links with Interactive Dropdowns (About v, Services v, Projects, Clients, News, Contact) -->
+            <nav class="hidden lg:flex items-center space-x-8 text-[14.5px] font-semibold text-lew-navy">
+                <!-- About Dropdown -->
+                <div class="relative group py-2">
+                    <a href="#about" class="flex items-center gap-1.5 hover:text-lew-tealBright transition">
+                        <span>About</span>
+                        <i class="fa-solid fa-chevron-down text-[10px] text-lew-tealBright transition-transform duration-200 group-hover:rotate-180"></i>
+                    </a>
+                    <!-- Dropdown Menu -->
+                    <div class="absolute left-0 top-full pt-2 w-60 opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-200 z-50">
+                        <div class="bg-white rounded-xl shadow-card-hover border border-lew-border p-2 text-xs space-y-1">
+                            <a href="#about" class="flex items-center gap-2.5 px-3 py-2.5 rounded-lg hover:bg-lew-ice text-lew-navy font-semibold transition">
+                                <i class="fa-solid fa-building-shield text-lew-tealBright w-4"></i>
+                                <div>
+                                    <div>About LEW Steel</div>
+                                    <div class="text-[10px] font-normal text-lew-slate">Lokenath Engineering Works</div>
+                                </div>
+                            </a>
+                            <a href="#stats-banner" class="flex items-center gap-2.5 px-3 py-2.5 rounded-lg hover:bg-lew-ice text-lew-navy font-semibold transition">
+                                <i class="fa-solid fa-award text-lew-tealBright w-4"></i>
+                                <div>
+                                    <div>15+ Years Track Record</div>
+                                    <div class="text-[10px] font-normal text-lew-slate">Zero Compromise on Quality</div>
+                                </div>
+                            </a>
+                            <button onclick="openCompanyProfileModal()" class="w-full text-left flex items-center gap-2.5 px-3 py-2.5 rounded-lg hover:bg-lew-ice text-lew-navy font-semibold transition">
+                                <i class="fa-solid fa-file-arrow-down text-lew-tealBright w-4"></i>
+                                <div>
+                                    <div>Download Corporate Profile</div>
+                                    <div class="text-[10px] font-normal text-lew-slate">Howrah Plant Capabilities</div>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Services Dropdown -->
+                <div class="relative group py-2">
+                    <a href="#services" class="flex items-center gap-1.5 hover:text-lew-tealBright transition">
+                        <span>Services</span>
+                        <i class="fa-solid fa-chevron-down text-[10px] text-lew-tealBright transition-transform duration-200 group-hover:rotate-180"></i>
+                    </a>
+                    <div class="absolute left-0 top-full pt-2 w-72 opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-200 z-50">
+                        <div class="bg-white rounded-xl shadow-card-hover border border-lew-border p-2.5 text-xs grid grid-cols-1 gap-1">
+                            <div class="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-lew-tealBright">Core Steel Solutions</div>
+                            <a href="#services" onclick="openServiceDetail(0)" class="px-2.5 py-1.5 rounded hover:bg-lew-ice flex items-center justify-between"><span>Steel Fabrication</span><i class="fa-solid fa-arrow-right text-[10px] text-lew-tealBright"></i></a>
+                            <a href="#services" onclick="openServiceDetail(1)" class="px-2.5 py-1.5 rounded hover:bg-lew-ice flex items-center justify-between"><span>Structural Engineering</span><i class="fa-solid fa-arrow-right text-[10px] text-lew-tealBright"></i></a>
+                            <a href="#services" onclick="openServiceDetail(2)" class="px-2.5 py-1.5 rounded hover:bg-lew-ice flex items-center justify-between"><span>Industrial Solutions</span><i class="fa-solid fa-arrow-right text-[10px] text-lew-tealBright"></i></a>
+                            <a href="#services" onclick="openServiceDetail(3)" class="px-2.5 py-1.5 rounded hover:bg-lew-ice flex items-center justify-between"><span>Conveyor Structures</span><i class="fa-solid fa-arrow-right text-[10px] text-lew-tealBright"></i></a>
+                            <a href="#services" onclick="openServiceDetail(4)" class="px-2.5 py-1.5 rounded hover:bg-lew-ice flex items-center justify-between"><span>Pressure Vessels</span><i class="fa-solid fa-arrow-right text-[10px] text-lew-tealBright"></i></a>
+                            <div class="border-t border-lew-border my-1"></div>
+                            <a href="#services" onclick="expandAllServicesAndScroll(event)" class="px-2.5 py-2 rounded-lg bg-lew-ice text-lew-tealBright font-bold flex items-center justify-between hover:bg-lew-tealBright hover:text-white transition">
+                                <span>View All 11 LEW Facilities</span>
+                                <i class="fa-solid fa-plus-circle"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="#projects" class="hover:text-lew-tealBright transition py-2">Projects</a>
+                <a href="#clients" class="hover:text-lew-tealBright transition py-2">Clients</a>
+                <a href="#news" class="hover:text-lew-tealBright transition py-2">News</a>
+                <a href="#contact" class="hover:text-lew-tealBright transition py-2">Contact</a>
+            </nav>
+
+            <!-- Right: "Get in Touch ->" Button + Mobile Menu Button -->
+            <div class="flex items-center gap-3">
+                <button onclick="openContactModal('General Engineering Inquiry')" 
+                        class="inline-flex items-center gap-2.5 bg-lew-tealDark hover:bg-lew-tealBright text-white text-xs sm:text-sm font-semibold px-5 py-2.5 rounded-md shadow-sm hover:shadow-md transition-all duration-300 group">
+                    <span>Get in Touch</span>
+                    <i class="fa-solid fa-arrow-right text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
+                </button>
+
+                <button onclick="toggleMobileMenu()" class="lg:hidden text-lew-navy hover:text-lew-tealBright p-2 rounded-md focus:outline-none" aria-label="Open Menu">
+                    <i id="mobile-menu-icon" class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Collapsible Navigation Drawer -->
+        <div id="mobile-menu-drawer" class="hidden lg:hidden bg-white border-b border-lew-border px-6 py-5 space-y-3 shadow-lg">
+            <a href="#about" onclick="toggleMobileMenu()" class="block py-2 text-sm font-semibold text-lew-navy border-b border-slate-100">About LEW Steel</a>
+            <a href="#services" onclick="toggleMobileMenu()" class="block py-2 text-sm font-semibold text-lew-navy border-b border-slate-100">Services (All 11 Facilities)</a>
+            <a href="#projects" onclick="toggleMobileMenu()" class="block py-2 text-sm font-semibold text-lew-navy border-b border-slate-100">Projects</a>
+            <a href="#clients" onclick="toggleMobileMenu()" class="block py-2 text-sm font-semibold text-lew-navy border-b border-slate-100">Clients</a>
+            <a href="#news" onclick="toggleMobileMenu()" class="block py-2 text-sm font-semibold text-lew-navy border-b border-slate-100">Company News</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="block py-2 text-sm font-semibold text-lew-navy">Contact Us</a>
+        </div>
+    </header>
+
+    <!-- =========================================================================
+         2. HERO SECTION WITH DIAGONAL STEEL RIBBONS & PARALLAX STRUCTURE
+         ========================================================================= -->
+    <section id="top" class="relative pt-20 hero-sky-bg overflow-hidden">
+
+        <div class="max-w-[1320px] mx-auto relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 items-center min-h-[520px] lg:min-h-[580px]">
+                
+                <!-- Left Column: Hero Typography & Dual Buttons -->
+                <div class="lg:col-span-6 px-4 sm:px-8 py-10 lg:py-14 relative z-20 el-motion-fade-left">
+                    <div class="inline-flex items-center gap-3 mb-4">
+                        <span class="eyebrow-line"></span>
+                        <span class="text-[11px] sm:text-xs font-extrabold tracking-[0.16em] uppercase text-lew-tealBright">
+                            ENGINEERING EXCELLENCE
+                        </span>
+                        <span class="eyebrow-line-light"></span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl xl:text-[54px] font-extrabold leading-[1.12] tracking-tight text-lew-navy mb-5">
+                        Steel Solutions<br>
+                        for a <span class="text-lew-tealBright">Stronger Tomorrow</span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-[#2C4657] font-normal leading-relaxed max-w-xl mb-8">
+                        LEW Steel delivers comprehensive steel engineering and fabrication solutions for iconic projects.
+                    </p>
+
+                    <div class="flex flex-wrap items-center gap-4">
+                        <a href="#projects" 
+                           class="inline-flex items-center gap-2.5 bg-lew-tealDark hover:bg-lew-tealBright text-white font-semibold text-sm px-6 py-3.5 rounded-md shadow-md hover:shadow-lg transition-all duration-300 group">
+                            <span>Explore Our Work</span>
+                            <i class="fa-solid fa-arrow-right text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
+                        </a>
+
+                        <a href="#services" 
+                           class="inline-flex items-center justify-center bg-white/85 hover:bg-white text-lew-navy border border-[#7FAEC8] hover:border-lew-navy font-semibold text-sm px-7 py-3.5 rounded-md shadow-sm transition-all duration-300">
+                            <span>Our Services</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Column: Multi-Story Steel Structure Photo matching your exact reference layout -->
+                <div class="lg:col-span-6 relative h-[380px] sm:h-[440px] lg:h-[580px] w-full">
+                    <div class="hero-diagonal-photo-wrap relative w-full h-full overflow-hidden">
+                        <img id="hero-parallax-img"
+                             data-asset-name="hero-steel-framework.webp"
+                             src="https://raw.githubusercontent.com/abhitonysmile/lewsteel/main/assets/hero-steel-framework.webp" 
+                             alt="LEW Steel Multi-Story Structural Steel Engineering Project" 
+                             class="w-full h-full object-cover object-center transition-transform duration-200 ease-out"
+                             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1541888946425-d09bb18086f6?auto=format&fit=crop&w=1600&q=85';">
+                        
+                        <div class="absolute inset-0 bg-gradient-to-tr from-[#062F43]/40 via-transparent to-[#38A8D6]/20 pointer-events-none"></div>
+                        <div id="hero-sunburst" class="absolute bottom-[18%] left-[26%] w-44 h-44 rounded-full bg-amber-300/45 blur-2xl pointer-events-none"></div>
+                        <div class="absolute bottom-[22%] left-[31%] w-16 h-16 rounded-full bg-white/80 blur-md pointer-events-none"></div>
+                        <div id="hero-ribbon-accent" class="absolute bg-gradient-to-b from-[#49A5D0]/50 hidden inset-y-0 lg:block pointer-events-none to-transparent via-[#1589B8]/35 w-32 z-20" style="clip-path: polygon(24% 0, 80% 0, 0% 120%, 0 0%);"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- =====================================================================
+             3. ANGLED DARK PETROL STATS BANNER (Directly nested inside Hero base)
+             ===================================================================== -->
+        <div id="stats-banner" class="max-w-[1320px] mx-auto px-0 sm:px-6 lg:px-8 relative z-30 -mt-2 sm:-mt-4 lg:-mt-6 pb-4">
+            <div class="relative flex items-stretch">
+                <div class="hidden sm:block w-5 bg-[#0E769B] -mr-3 z-20"
+                     style="clip-path: polygon(75% 0, 100% 0, 25% 100%, 0 100%);"></div>
+                <div class="hidden sm:block w-3 bg-[#47B0DA] -mr-1.5 z-20"
+                     style="clip-path: polygon(75% 0, 100% 0, 25% 100%, 0 100%);"></div>
+
+                <div class="stats-angled-bar w-full text-white py-5 sm:py-6 px-6 sm:px-12 shadow-card">
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-0 lg:divide-x lg:divide-white/15">
+                        
+                        <div class="flex items-center justify-start lg:justify-center gap-4 px-4 el-motion-fade-up">
+                            <svg class="w-10 h-10 text-[#4EC0EB] shrink-0" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2">
+                                <circle cx="24" cy="19" r="9" stroke="white"/>
+                                <circle cx="24" cy="19" r="4" stroke="#4EC0EB"/>
+                                <path d="M18 10L15 7M30 10L33 7M14 19H10M38 19H34" stroke="#4EC0EB" stroke-linecap="round"/>
+                                <path d="M18 27L14 41L24 36L34 41L30 27" stroke="white" stroke-linejoin="round"/>
+                            </svg>
+                            <div>
+                                <div class="text-2xl sm:text-[27px] font-extrabold leading-tight tracking-tight">
+                                    <span class="stat-counter" data-target="15">15</span>+
+                                </div>
+                                <div class="text-xs sm:text-[13px] text-slate-200 font-medium">Years of Experience</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-start lg:justify-center gap-4 px-4 el-motion-fade-up" style="transition-delay: 90ms;">
+                            <svg class="w-10 h-10 text-[#4EC0EB] shrink-0" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2">
+                                <rect x="10" y="14" width="16" height="28" stroke="white"/>
+                                <polygon points="10,14 18,7 26,14" stroke="#4EC0EB"/>
+                                <rect x="26" y="22" width="12" height="20" stroke="white"/>
+                                <line x1="15" y1="20" x2="21" y2="20" stroke="#4EC0EB"/>
+                                <line x1="15" y1="26" x2="21" y2="26" stroke="#4EC0EB"/>
+                                <line x1="15" y1="32" x2="21" y2="32" stroke="#4EC0EB"/>
+                                <line x1="6" y1="42" x2="42" y2="42" stroke="white"/>
+                            </svg>
+                            <div>
+                                <div class="text-2xl sm:text-[27px] font-extrabold leading-tight tracking-tight">
+                                    <span class="stat-counter" data-target="200">200</span>+
+                                </div>
+                                <div class="text-xs sm:text-[13px] text-slate-200 font-medium">Projects Delivered</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-start lg:justify-center gap-4 px-4 el-motion-fade-up" style="transition-delay: 180ms;">
+                            <svg class="w-10 h-10 text-[#4EC0EB] shrink-0" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2">
+                                <circle cx="24" cy="15" r="5" stroke="white"/>
+                                <circle cx="13" cy="18" r="4" stroke="#4EC0EB"/>
+                                <circle cx="35" cy="18" r="4" stroke="#4EC0EB"/>
+                                <path d="M15 36C15 30.5 19 27 24 27C29 27 33 30.5 33 36" stroke="white" stroke-linecap="round"/>
+                                <path d="M6 36C6 31.5 9 29 13 29" stroke="#4EC0EB" stroke-linecap="round"/>
+                                <path d="M42 36C42 31.5 39 29 35 29" stroke="#4EC0EB" stroke-linecap="round"/>
+                            </svg>
+                            <div>
+                                <div class="text-2xl sm:text-[27px] font-extrabold leading-tight tracking-tight">
+                                    <span class="stat-counter" data-target="100">100</span>+
+                                </div>
+                                <div class="text-xs sm:text-[13px] text-slate-200 font-medium">Happy Clients</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-start lg:justify-center gap-4 px-4 el-motion-fade-up" style="transition-delay: 270ms;">
+                            <svg class="w-10 h-10 text-[#4EC0EB] shrink-0" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2">
+                                <polygon points="14,10 34,10 42,20 24,40 6,20" stroke="white" stroke-linejoin="round"/>
+                                <line x1="6" y1="20" x2="42" y2="20" stroke="#4EC0EB"/>
+                                <polyline points="14,10 20,20 24,40 28,20 34,10" stroke="#4EC0EB" stroke-linejoin="round"/>
+                            </svg>
+                            <div>
+                                <div class="text-2xl sm:text-[27px] font-extrabold leading-tight tracking-tight">
+                                    Zero
+                                </div>
+                                <div class="text-xs sm:text-[13px] text-slate-200 font-medium">Compromise on Quality</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================================
+         4. ABOUT LEW STEEL SECTION (3-COLUMN SPLIT WITH DIAGONAL TRUSS PHOTO)
+         ========================================================================= -->
+    <section id="about" class="bg-white py-12 lg:py-16 relative overflow-hidden">
+        <div class="max-w-[1320px] mx-auto px-4 sm:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-center">
+                
+                <!-- Left Column (5 Cols): Diagonal-Clipped Steel Roof Girders Against Blue Sky -->
+                <div class="lg:col-span-5 relative h-[300px] sm:h-[360px] lg:h-[390px] el-motion-fade-left">
+                    <div class="about-diagonal-photo-wrap w-full h-full overflow-hidden rounded-l-md relative bg-lew-ice">
+                        <img id="about-parallax-img"
+                             data-asset-name="01_steel_framework_closeup.jpg"
+                             src="01_steel_framework_closeup.jpg" 
+                             alt="Heavy Steel Structural Girders and Trusses" 
+                             class="w-full h-full object-cover object-center scale-110 transition-transform duration-200 ease-out"
+                             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&w=1200&q=85';">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-[#062F43]/25 via-transparent to-[#38A8D6]/20 pointer-events-none"></div>
+                    </div>
+                </div>
+
+                <!-- Middle Column (4 Cols): ABOUT LEW STEEL Copy & "Know More ->" Button -->
+                <div class="lg:col-span-4 lg:pr-6 space-y-4 el-motion-fade-up">
+                    <div class="inline-flex items-center gap-2.5">
+                        <span class="eyebrow-line"></span>
+                        <span class="text-[11px] font-extrabold tracking-[0.15em] uppercase text-lew-tealBright">
+                            ABOUT LEW STEEL
+                        </span>
+                    </div>
+
+                    <h2 class="text-2xl sm:text-3xl xl:text-[33px] font-extrabold text-lew-navy leading-[1.2] tracking-tight">
+                        Building with Steel.<br>
+                        Building for the Future.
+                    </h2>
+
+                    <p class="text-xs sm:text-[14px] text-lew-slate leading-[1.7] font-body">
+                        With over 15 years of expertise, LEW Steel is a trusted partner in steel engineering and fabrication, delivering quality, innovation and reliability.
+                    </p>
+
+                    <div class="pt-2">
+                        <button onclick="openCompanyProfileModal()" 
+                                class="inline-flex items-center gap-2.5 bg-lew-tealDark hover:bg-lew-tealBright text-white font-semibold text-xs sm:text-sm px-6 py-3 rounded-md shadow-sm hover:shadow transition-all duration-300 group">
+                            <span>Know More</span>
+                            <i class="fa-solid fa-arrow-right text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Column (3 Cols): 3 Value Pillars with Vertical Divider Line -->
+                <div class="lg:col-span-3 lg:border-l lg:border-[#CFE0EC] lg:pl-7 space-y-6 el-motion-fade-right">
+                    
+                    <!-- Pillar 1: Engineering Excellence -->
+                    <div class="flex items-start gap-3.5 group">
+                        <div class="w-11 h-11 rounded-lg bg-lew-ice flex items-center justify-center shrink-0 group-hover:bg-lew-tealBright/15 transition">
+                            <svg class="w-7 h-7 text-lew-tealBright" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 30C18 30 6 22.5 6 13.5C6 9.5 9.2 6.5 13 6.5C15.4 6.5 17.2 7.8 18 9.2C18.8 7.8 20.6 6.5 23 6.5C26.8 6.5 30 9.5 30 13.5C30 22.5 18 30 18 30Z" stroke="#062F43"/>
+                                <path d="M12 17L16 21L24 13" stroke="#1589B8" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-sm sm:text-[15px] font-extrabold text-lew-navy">Engineering Excellence</h3>
+                            <p class="text-xs text-lew-slate mt-0.5">Innovative and reliable solutions</p>
+                        </div>
+                    </div>
+
+                    <!-- Pillar 2: State-of-the-Art Facilities -->
+                    <div class="flex items-start gap-3.5 group">
+                        <div class="w-11 h-11 rounded-lg bg-lew-ice flex items-center justify-center shrink-0 group-hover:bg-lew-tealBright/15 transition">
+                            <svg class="w-7 h-7 text-lew-tealBright" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="18" cy="12" r="4" stroke="#062F43"/>
+                                <circle cx="10" cy="15" r="3" stroke="#1589B8"/>
+                                <circle cx="26" cy="15" r="3" stroke="#1589B8"/>
+                                <path d="M11 27C11 23 14 20 18 20C22 20 25 23 25 27" stroke="#062F43" stroke-linecap="round"/>
+                                <path d="M5 27C5 24 7 22 10 22M31 27C31 24 29 22 26 22" stroke="#1589B8" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-sm sm:text-[15px] font-extrabold text-lew-navy">State-of-the-Art Facilities</h3>
+                            <p class="text-xs text-lew-slate mt-0.5">Advanced fabrication capabilities</p>
+                        </div>
+                    </div>
+
+                    <!-- Pillar 3: On-Time Delivery -->
+                    <div class="flex items-start gap-3.5 group">
+                        <div class="w-11 h-11 rounded-lg bg-lew-ice flex items-center justify-center shrink-0 group-hover:bg-lew-tealBright/15 transition">
+                            <svg class="w-7 h-7 text-lew-tealBright" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="18" cy="18" r="12" stroke="#062F43" stroke-dasharray="60 12"/>
+                                <polyline points="18,11 18,18 23,21" stroke="#1589B8" stroke-linecap="round" stroke-linejoin="round"/>
+                                <circle cx="18" cy="18" r="2" fill="#062F43"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-sm sm:text-[15px] font-extrabold text-lew-navy">On-Time Delivery</h3>
+                            <p class="text-xs text-lew-slate mt-0.5">Committed to your schedule</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================================
+         5. OUR SERVICES — "COMPREHENSIVE STEEL SOLUTIONS" (EXPANDABLE ON CLICK!)
+         ========================================================================= -->
+    <section id="services" class="bg-lew-ice py-14 lg:py-20 border-y border-[#DCE9F3] relative">
+        <div class="max-w-[1320px] mx-auto px-4 sm:px-8">
+            
+            <!-- Header Row: Eyebrow + Title on Left | Interactive "View All Services ->" Trigger on Right -->
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-9 el-motion-fade-up">
+                <div>
+                    <div class="inline-flex items-center gap-2.5 mb-2">
+                        <span class="eyebrow-line"></span>
+                        <span class="text-[11px] font-extrabold tracking-[0.15em] uppercase text-lew-tealBright">
+                            OUR SERVICES
+                        </span>
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl lg:text-[34px] font-extrabold text-lew-navy tracking-tight">
+                        Comprehensive Steel Solutions
+                    </h2>
+                </div>
+
+                <!-- Interactive "View All Services ->" Expand/Collapse Button -->
+                <button id="toggle-all-services-btn" onclick="toggleAllServices()" 
+                        class="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-lew-tealBright hover:text-lew-navy transition group py-1.5 px-3 rounded-md hover:bg-white/70 focus:outline-none">
+                    <span id="toggle-services-label">View All Services</span>
+                    <span id="toggle-services-badge" class="bg-lew-tealBright/15 text-lew-tealBright text-[10px] font-extrabold px-2 py-0.5 rounded-full">
+                        +6 More
+                    </span>
+                    <i id="toggle-services-icon" class="fa-solid fa-arrow-right text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
+                </button>
+            </div>
+
+            <!-- PRIMARY 5 SERVICE CARDS ROW (EXACT MOCKUP MATCH) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
+                
+                <!-- Card 1: Steel Fabrication -->
+                <div onclick="openServiceDetail(0)" class="group relative h-[230px] sm:h-[245px] rounded-[10px] overflow-hidden shadow-card hover:shadow-card-hover cursor-pointer el-motion-scale">
+                    <img data-asset-name="02_steel_building_exterior.jpg"
+                         src="02_steel_building_exterior.jpg" 
+                         alt="Steel Fabrication" 
+                         class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700 ease-out"
+                         onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1541888946425-d09bb18086f6?auto=format&fit=crop&w=800&q=80';">
+                    <div class="absolute inset-0 service-card-overlay"></div>
+                    <div class="absolute inset-x-0 bottom-0 p-4 flex items-end justify-between">
+                        <h3 class="text-white font-bold text-[15px] leading-snug">
+                            Steel<br>Fabrication <span class="inline-block transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+                        </h3>
+                        <span class="w-7 h-7 rounded-full bg-white text-lew-navy flex items-center justify-center shadow group-hover:bg-lew-cyan group-hover:text-white transition-colors duration-300 shrink-0">
+                            <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Card 2: Structural Engineering -->
+                <div onclick="openServiceDetail(1)" class="group relative h-[230px] sm:h-[245px] rounded-[10px] overflow-hidden shadow-card hover:shadow-card-hover cursor-pointer el-motion-scale" style="transition-delay: 70ms;">
+                    <img data-asset-name="03_industrial_pipelines.jpg"
+                         src="03_industrial_pipelines.jpg" 
+                         alt="Structural Engineering" 
+                         class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700 ease-out"
+                         onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&w=800&q=80';">
+                    <div class="absolute inset-0 service-card-overlay"></div>
+                    <div class="absolute inset-x-0 bottom-0 p-4 flex items-end justify-between">
+                        <h3 class="text-white font-bold text-[15px] leading-snug">
+                            Structural<br>Engineering <span class="inline-block transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+                        </h3>
+                        <span class="w-7 h-7 rounded-full bg-white text-lew-navy flex items-center justify-center shadow group-hover:bg-lew-cyan group-hover:text-white transition-colors duration-300 shrink-0">
+                            <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Card 3: Industrial Solutions -->
+                <div onclick="openServiceDetail(2)" class="group relative h-[230px] sm:h-[245px] rounded-[10px] overflow-hidden shadow-card hover:shadow-card-hover cursor-pointer el-motion-scale" style="transition-delay: 140ms;">
+                    <img data-asset-name="04_industrial_facility.jpg"
+                         src="04_industrial_facility.jpg" 
+                         alt="Industrial Solutions" 
+                         class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700 ease-out"
+                         onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80';">
+                    <div class="absolute inset-0 service-card-overlay"></div>
+                    <div class="absolute inset-x-0 bottom-0 p-4 flex items-end justify-between">
+                        <h3 class="text-white font-bold text-[15px] leading-snug">
+                            Industrial<br>Solutions <span class="inline-block transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+                        </h3>
+                        <span class="w-7 h-7 rounded-full bg-white text-lew-navy flex items-center justify-center shadow group-hover:bg-lew-cyan group-hover:text-white transition-colors duration-300 shrink-0">
+                            <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Card 4: Conveyor Structures -->
+                <div onclick="openServiceDetail(3)" class="group relative h-[230px] sm:h-[245px] rounded-[10px] overflow-hidden shadow-card hover:shadow-card-hover cursor-pointer el-motion-scale" style="transition-delay: 210ms;">
+                    <img data-asset-name="05_conveyor_structure.jpg"
+                         src="05_conveyor_structure.jpg" 
+                         alt="Conveyor Structures" 
+                         class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700 ease-out"
+                         onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80';">
+                    <div class="absolute inset-0 service-card-overlay"></div>
+                    <div class="absolute inset-x-0 bottom-0 p-4 flex items-end justify-between">
+                        <h3 class="text-white font-bold text-[15px] leading-snug">
+                            Conveyor<br>Structures <span class="inline-block transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+                        </h3>
+                        <span class="w-7 h-7 rounded-full bg-white text-lew-navy flex items-center justify-center shadow group-hover:bg-lew-cyan group-hover:text-white transition-colors duration-300 shrink-0">
+                            <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Card 5: Pressure Vessels -->
+                <div onclick="openServiceDetail(4)" class="group relative h-[230px] sm:h-[245px] rounded-[10px] overflow-hidden shadow-card hover:shadow-card-hover cursor-pointer el-motion-scale" style="transition-delay: 280ms;">
+                    <img data-asset-name="06_pressure_vessels.jpg"
+                         src="06_pressure_vessels.jpg" 
+                         alt="Pressure Vessels" 
+                         class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700 ease-out"
+                         onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=800&q=80';">
+                    <div class="absolute inset-0 service-card-overlay"></div>
+                    <div class="absolute inset-x-0 bottom-0 p-4 flex items-end justify-between">
+                        <h3 class="text-white font-bold text-[15px] leading-snug">
+                            Pressure<br>Vessels <span class="inline-block transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+                        </h3>
+                        <span class="w-7 h-7 rounded-full bg-white text-lew-navy flex items-center justify-center shadow group-hover:bg-lew-cyan group-hover:text-white transition-colors duration-300 shrink-0">
+                            <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- =================================================================
+                 EXPANDABLE DRAWER: REMAINING 6 AUTHENTIC LEW STEEL FACILITIES
+                 (Revealed smoothly when clicking "View All Services ->")
+                 ================================================================= -->
+            <div id="more-services-wrapper">
+                <div class="pt-4 pb-2 border-t border-[#CFE0EC]">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-5">
+                        <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-lew-tealBright">
+                            <i class="fa-solid fa-gears"></i>
+                            <span>Complete LEW (Lokenath Engineering Works) Specialized Fabrication Portfolio</span>
+                        </div>
+                        <span class="text-xs text-lew-slate">Click any facility card for technical specifications &amp; RFQ</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                        
+                        <!-- Card 6: Railway Channel Sleepers -->
+                        <div onclick="openServiceDetail(5)" class="group relative h-[215px] rounded-[10px] overflow-hidden shadow-card hover:shadow-card-hover cursor-pointer">
+                            <img data-asset-name="09_elevated_steel_structure.jpg"
+                                 src="09_elevated_steel_structure.jpg" 
+                                 alt="Railway Channel Sleepers" 
+                                 class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700"
+                                 onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=700&q=80';">
+                            <div class="absolute inset-0 service-card-overlay"></div>
+                            <span class="absolute top-3 left-3 bg-lew-tealBright/90 text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded">Railway Infra</span>
+                            <div class="absolute inset-x-0 bottom-0 p-4 flex items-end justify-between">
+                                <div>
+                                    <h3 class="text-white font-bold text-base leading-snug">
+                                        Railway Channel Sleepers <span class="inline-block transition-transform group-hover:translate-x-1">&rarr;</span>
+                                    </h3>
+                                    <p class="text-[11px] text-slate-200 mt-0.5">Heavy-duty steel sleepers for railway bridges &amp; tracks</p>
+                                </div>
+                                <span class="w-7 h-7 rounded-full bg-white text-lew-navy flex items-center justify-center shadow group-hover:bg-lew-cyan group-hover:text-white transition shrink-0">
+                                    <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Card 7: Pipes of (Oil, Gas & Air) -->
+                        <div onclick="openServiceDetail(6)" class="group relative h-[215px] rounded-[10px] overflow-hidden shadow-card hover:shadow-card-hover cursor-pointer">
+                            <img data-asset-name="03_industrial_pipelines.jpg"
+                                 src="03_industrial_pipelines.jpg" 
+                                 alt="Pipe of Oil, Gas and Air" 
+                                 class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700"
+                                 onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=700&q=80';">
+                            <div class="absolute inset-0 service-card-overlay"></div>
+                            <span class="absolute top-3 left-3 bg-lew-tealBright/90 text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded">Utility Pipelines</span>
+                            <div class="absolute inset-x-0 bottom-0 p-4 flex items-end justify-between">
+                                <div>
+                                    <h3 class="text-white font-bold text-base leading-snug">
+                                        Pipes of (Oil, Gas &amp; Air) <span class="inline-block transition-transform group-hover:translate-x-1">&rarr;</span>
+                                    </h3>
+                                    <p class="text-[11px] text-slate-200 mt-0.5">High-pressure welded transmission pipelines &amp; manifolds</p>
+                                </div>
+                                <span class="w-7 h-7 rounded-full bg-white text-lew-navy flex items-center justify-center shadow group-hover:bg-lew-cyan group-hover:text-white transition shrink-0">
+                                    <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Card 8: Towers and Mast Supply -->
+                        <div onclick="openServiceDetail(7)" class="group relative h-[215px] rounded-[10px] overflow-hidden shadow-card hover:shadow-card-hover cursor-pointer">
+                            <img data-asset-name="07_refinery_plant.jpg"
+                                 src="07_refinery_plant.jpg" 
+                                 alt="Towers and Mast Supply" 
+                                 class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700"
+                                 onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&w=700&q=80';">
+                            <div class="absolute inset-0 service-card-overlay"></div>
+                            <span class="absolute top-3 left-3 bg-lew-tealBright/90 text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded">Power &amp; Telecom</span>
+                            <div class="absolute inset-x-0 bottom-0 p-4 flex items-end justify-between">
+                                <div>
+                                    <h3 class="text-white font-bold text-base leading-snug">
+                                        Towers &amp; Mast Supply <span class="inline-block transition-transform group-hover:translate-x-1">&rarr;</span>
+                                    </h3>
+                                    <p class="text-[11px] text-slate-200 mt-0.5">Galvanized lattice transmission towers &amp; high masts</p>
+                                </div>
+                                <span class="w-7 h-7 rounded-full bg-white text-lew-navy flex items-center justify-center shadow group-hover:bg-lew-cyan group-hover:text-white transition shrink-0">
+                                    <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Card 9: Fabricated Girders -->
+                        <div onclick="openServiceDetail(8)" class="group relative h-[215px] rounded-[10px] overflow-hidden shadow-card hover:shadow-card-hover cursor-pointer">
+                            <img data-asset-name="01_steel_framework_closeup.jpg"
+                                 src="01_steel_framework_closeup.jpg" 
+                                 alt="Fabricated Girders" 
+                                 class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700"
+                                 onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1541888946425-d09bb18086f6?auto=format&fit=crop&w=700&q=80';">
+                            <div class="absolute inset-0 service-card-overlay"></div>
+                            <span class="absolute top-3 left-3 bg-lew-tealBright/90 text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded">Heavy Structural</span>
+                            <div class="absolute inset-x-0 bottom-0 p-4 flex items-end justify-between">
+                                <div>
+                                    <h3 class="text-white font-bold text-base leading-snug">
+                                        Fabricated Girders <span class="inline-block transition-transform group-hover:translate-x-1">&rarr;</span>
+                                    </h3>
+                                    <p class="text-[11px] text-slate-200 mt-0.5">Welded plate girders, box girders &amp; crane gantry beams</p>
+                                </div>
+                                <span class="w-7 h-7 rounded-full bg-white text-lew-navy flex items-center justify-center shadow group-hover:bg-lew-cyan group-hover:text-white transition shrink-0">
+                                    <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Card 10: Furnace Spares & Small Boilers -->
+                        <div onclick="openServiceDetail(9)" class="group relative h-[215px] rounded-[10px] overflow-hidden shadow-card hover:shadow-card-hover cursor-pointer">
+                            <img data-asset-name="08_steel_building_project.jpg"
+                                 src="08_steel_building_project.jpg" 
+                                 alt="Furnace Spares and Small Boilers" 
+                                 class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700"
+                                 onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=700&q=80';">
+                            <div class="absolute inset-0 service-card-overlay"></div>
+                            <span class="absolute top-3 left-3 bg-lew-tealBright/90 text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded">Thermal Systems</span>
+                            <div class="absolute inset-x-0 bottom-0 p-4 flex items-end justify-between">
+                                <div>
+                                    <h3 class="text-white font-bold text-base leading-snug">
+                                        Furnace Spares &amp; Small Boilers <span class="inline-block transition-transform group-hover:translate-x-1">&rarr;</span>
+                                    </h3>
+                                    <p class="text-[11px] text-slate-200 mt-0.5">Heat-resistant furnace doors, jackets &amp; industrial boilers</p>
+                                </div>
+                                <span class="w-7 h-7 rounded-full bg-white text-lew-navy flex items-center justify-center shadow group-hover:bg-lew-cyan group-hover:text-white transition shrink-0">
+                                    <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Card 11: Annealing Hoods, Tanks & Columns -->
+                        <div onclick="openServiceDetail(10)" class="group relative h-[215px] rounded-[10px] overflow-hidden shadow-card hover:shadow-card-hover cursor-pointer">
+                            <img data-asset-name="06_pressure_vessels.jpg"
+                                 src="06_pressure_vessels.jpg" 
+                                 alt="Annealing Hoods, Tanks and Columns" 
+                                 class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700"
+                                 onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=700&q=80';">
+                            <div class="absolute inset-0 service-card-overlay"></div>
+                            <span class="absolute top-3 left-3 bg-lew-tealBright/90 text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded">Process Equipments</span>
+                            <div class="absolute inset-x-0 bottom-0 p-4 flex items-end justify-between">
+                                <div>
+                                    <h3 class="text-white font-bold text-base leading-snug">
+                                        Annealing Hoods, Tanks &amp; Columns <span class="inline-block transition-transform group-hover:translate-x-1">&rarr;</span>
+                                    </h3>
+                                    <p class="text-[11px] text-slate-200 mt-0.5">Protective annealing covers, utility pipelines &amp; storage columns</p>
+                                </div>
+                                <span class="w-7 h-7 rounded-full bg-white text-lew-navy flex items-center justify-center shadow group-hover:bg-lew-cyan group-hover:text-white transition shrink-0">
+                                    <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- =========================================================================
+         6. OUR PROJECTS & OUR CLIENTS (SPLIT SECTION ON WHITE BACKGROUND)
+         ========================================================================= -->
+    <section id="projects" class="bg-white py-14 lg:py-20">
+        <div class="max-w-[1320px] mx-auto px-4 sm:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-start">
+                
+                <!-- LEFT & CENTER AREA: OUR PROJECTS (8 Cols) -->
+                <div class="lg:col-span-8 grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+                    
+                    <!-- Left Text Block (4 Cols of 12) -->
+                    <div class="md:col-span-4 space-y-4 el-motion-fade-left">
+                        <div class="inline-flex items-center gap-2.5">
+                            <span class="eyebrow-line"></span>
+                            <span class="text-[11px] font-extrabold tracking-[0.15em] uppercase text-lew-tealBright">
+                                OUR PROJECTS
+                            </span>
+                        </div>
+
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-lew-navy leading-[1.2] tracking-tight">
+                            Trusted by Industry Leaders
+                        </h2>
+
+                        <p class="text-xs sm:text-[14px] text-lew-slate leading-relaxed font-body">
+                            A portfolio of successful projects across diverse industries.
+                        </p>
+
+                        <div class="pt-1">
+                            <button onclick="cycleProjectsSlide()" 
+                                    class="inline-flex items-center gap-2.5 bg-lew-tealDark hover:bg-lew-tealBright text-white font-semibold text-xs sm:text-sm px-5 py-3 rounded-md shadow-sm transition-all duration-300 group">
+                                <span>View All Projects</span>
+                                <i class="fa-solid fa-arrow-right text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Center 3-Photo Project Gallery + Pagination Dots (8 Cols of 12) -->
+                    <div class="md:col-span-8 el-motion-fade-up">
+                        <div id="projects-carousel-grid" class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <!-- Project Card 1 (Mapped to 07_refinery_plant.jpg + Industrial Fallback) -->
+                            <div onclick="openProjectLightbox(0)" class="group relative h-52 sm:h-56 rounded-lg overflow-hidden shadow-card cursor-pointer bg-lew-ice">
+                                <img id="proj-img-0"
+                                     data-asset-name="07_refinery_plant.jpg"
+                                     src="07_refinery_plant.jpg" 
+                                     alt="Petrochemical Towers & Process Columns" 
+                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                     onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=700&q=80';">
+                                <div class="absolute inset-0 bg-gradient-to-t from-lew-navy/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                                    <span id="proj-caption-0" class="text-white text-xs font-bold">Process Columns &amp; Towers</span>
+                                </div>
+                            </div>
+
+                            <!-- Project Card 2 (Mapped to 08_steel_building_project.jpg + Industrial Fallback) -->
+                            <div onclick="openProjectLightbox(1)" class="group relative h-52 sm:h-56 rounded-lg overflow-hidden shadow-card cursor-pointer bg-lew-ice">
+                                <img id="proj-img-1"
+                                     data-asset-name="08_steel_building_project.jpg"
+                                     src="08_steel_building_project.jpg" 
+                                     alt="Multi-Story Industrial Steel Frame" 
+                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                     onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1541888946425-d09bb18086f6?auto=format&fit=crop&w=700&q=80';">
+                                <div class="absolute inset-0 bg-gradient-to-t from-lew-navy/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                                    <span id="proj-caption-1" class="text-white text-xs font-bold">Multi-Bay Steel Structure</span>
+                                </div>
+                            </div>
+
+                            <!-- Project Card 3 (Mapped to 09_elevated_steel_structure.jpg + Industrial Fallback) -->
+                            <div onclick="openProjectLightbox(2)" class="group relative h-52 sm:h-56 rounded-lg overflow-hidden shadow-card cursor-pointer bg-lew-ice">
+                                <img id="proj-img-2"
+                                     data-asset-name="09_elevated_steel_structure.jpg"
+                                     src="09_elevated_steel_structure.jpg" 
+                                     alt="Heavy Overhead Crane Girders & Roof Truss" 
+                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                     onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&w=700&q=80';">
+                                <div class="absolute inset-0 bg-gradient-to-t from-lew-navy/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                                    <span id="proj-caption-2" class="text-white text-xs font-bold">Heavy Girders &amp; Conveyor Bay</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pagination Dots (Exact Mockup Match) -->
+                        <div class="flex items-center justify-center gap-2 mt-5">
+                            <button onclick="setProjectSlide(0)" id="proj-dot-0" class="w-2.5 h-2.5 rounded-full bg-lew-cyan transition-all" aria-label="Slide 1"></button>
+                            <button onclick="setProjectSlide(1)" id="proj-dot-1" class="w-2.5 h-2.5 rounded-full border border-slate-300 bg-transparent hover:border-lew-cyan transition-all" aria-label="Slide 2"></button>
+                            <button onclick="setProjectSlide(2)" id="proj-dot-2" class="w-2.5 h-2.5 rounded-full border border-slate-300 bg-transparent hover:border-lew-cyan transition-all" aria-label="Slide 3"></button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- RIGHT AREA: OUR CLIENTS (4 Cols with Left Vertical Hairline Border) -->
+                <div id="clients" class="lg:col-span-4 lg:border-l lg:border-[#CFE0EC] lg:pl-8 el-motion-fade-right">
+                    <div class="inline-flex items-center gap-2.5 mb-6">
+                        <span class="eyebrow-line"></span>
+                        <span class="text-[11px] font-extrabold tracking-[0.15em] uppercase text-lew-tealBright">
+                            OUR CLIENTS
+                        </span>
+                    </div>
+
+                    <!-- 2x3 Grid of Exact Corporate Logos from Mockup (TATA, adani, JSW, L&T, Reliance, Hindustan Unilever) -->
+                    <div class="grid grid-cols-3 gap-x-4 gap-y-7 items-center text-center">
+                        
+                        <!-- 1. TATA -->
+                        <div class="flex flex-col items-center justify-center p-2 grayscale hover:grayscale-0 opacity-85 hover:opacity-100 transition cursor-pointer">
+                            <svg class="h-10 w-auto" viewBox="0 0 100 56" fill="none">
+                                <ellipse cx="50" cy="18" rx="22" ry="11" stroke="#3B6E8C" stroke-width="2.5"/>
+                                <path d="M35 18C42 12 58 12 65 18" stroke="#3B6E8C" stroke-width="2.5"/>
+                                <line x1="50" y1="9" x2="50" y2="29" stroke="#3B6E8C" stroke-width="3"/>
+                                <text x="50" y="48" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="16" fill="#2A4D63" letter-spacing="2">TATA</text>
+                            </svg>
+                        </div>
+
+                        <!-- 2. adani -->
+                        <div class="flex flex-col items-center justify-center p-2 opacity-90 hover:opacity-100 transition cursor-pointer">
+                            <span class="font-sans font-extrabold text-2xl tracking-tight bg-gradient-to-r from-[#062F43] via-[#0E769B] to-[#1589B8] bg-clip-text text-transparent">
+                                adani
+                            </span>
+                        </div>
+
+                        <!-- 3. JSW -->
+                        <div class="flex flex-col items-center justify-center p-2 opacity-90 hover:opacity-100 transition cursor-pointer">
+                            <svg class="h-10 w-auto" viewBox="0 0 110 46" fill="none">
+                                <text x="54" y="29" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-style="italic" font-weight="800" font-size="24" fill="#062F43">JSW</text>
+                                <path d="M16 35C42 26 70 28 94 18" stroke="#0E769B" stroke-width="3" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+
+                        <!-- 4. LARSEN & TOUBRO -->
+                        <div class="flex flex-col items-center justify-center p-2 opacity-85 hover:opacity-100 transition cursor-pointer">
+                            <div class="w-8 h-8 rounded-full border-2 border-[#062F43] flex items-center justify-center font-extrabold text-xs text-[#062F43] mb-1">
+                                L&amp;T
+                            </div>
+                            <span class="text-[8px] font-bold tracking-wider text-lew-navy uppercase">LARSEN &amp; TOUBRO</span>
+                        </div>
+
+                        <!-- 5. Reliance Industries Limited -->
+                        <div class="flex flex-col items-center justify-center p-2 opacity-85 hover:opacity-100 transition cursor-pointer">
+                            <div class="w-7 h-7 rounded-full border-2 border-[#B68938] flex items-center justify-center text-[#B68938] text-xs font-bold mb-1">
+                                R
+                            </div>
+                            <span class="text-[10px] font-bold text-lew-navy leading-none">Reliance</span>
+                            <span class="text-[7.5px] text-lew-slate">Industries Limited</span>
+                        </div>
+
+                        <!-- 6. Hindustan Unilever Limited -->
+                        <div class="flex flex-col items-center justify-center p-2 opacity-85 hover:opacity-100 transition cursor-pointer">
+                            <div class="text-lew-tealBright font-extrabold text-xl leading-none mb-1">U</div>
+                            <span class="text-[8px] font-semibold text-lew-tealBright leading-tight">Hindustan<br>Unilever Limited</span>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================================
+         7. COMPANY NEWS — "LATEST UPDATES & ANNOUNCEMENTS"
+         ========================================================================= -->
+    <section id="news" class="bg-lew-ice py-14 lg:py-20 border-t border-[#DCE9F3]">
+        <div class="max-w-[1320px] mx-auto px-4 sm:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                
+                <!-- Left Column (3 Cols): Eyebrow, Heading, Subtitle & "View All News ->" -->
+                <div class="lg:col-span-3 space-y-4 el-motion-fade-left">
+                    <div class="inline-flex items-center gap-2.5">
+                        <span class="eyebrow-line"></span>
+                        <span class="text-[11px] font-extrabold tracking-[0.15em] uppercase text-lew-tealBright">
+                            COMPANY NEWS
+                        </span>
+                    </div>
+
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-lew-navy leading-[1.2] tracking-tight">
+                        Latest Updates &amp; Announcements
+                    </h2>
+
+                    <p class="text-xs sm:text-[13.5px] text-lew-slate leading-relaxed font-body">
+                        Stay informed about our latest projects, initiatives and company news.
+                    </p>
+
+                    <div class="pt-1">
+                        <button onclick="openNewsModal(0)" 
+                                class="inline-flex items-center gap-2.5 bg-lew-tealDark hover:bg-lew-tealBright text-white font-semibold text-xs sm:text-sm px-5 py-3 rounded-md shadow-sm transition-all duration-300 group">
+                            <span>View All News</span>
+                            <i class="fa-solid fa-arrow-right text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Column (9 Cols): 3 Crisp White News Cards Matching Mockup -->
+                <div class="lg:col-span-9 grid grid-cols-1 sm:grid-cols-3 gap-5">
+                    
+                    <!-- News Card 1 -->
+                    <article onclick="openNewsModal(0)" class="bg-white rounded-xl overflow-hidden border border-[#DCE8F2] shadow-sm hover:shadow-card-hover transition-all duration-300 cursor-pointer group el-motion-fade-up">
+                        <div class="h-44 overflow-hidden bg-lew-ice">
+                            <img data-asset-name="02_steel_building_exterior.jpg"
+                                 src="02_steel_building_exterior.jpg" 
+                                 alt="LEW Steel bags major infrastructure project" 
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                 onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1541888946425-d09bb18086f6?auto=format&fit=crop&w=700&q=80';">
+                        </div>
+                        <div class="p-5">
+                            <time class="text-[11px] font-medium text-lew-slate block mb-1.5">Sep 10, 2025</time>
+                            <h3 class="text-sm sm:text-[15px] font-bold text-lew-navy group-hover:text-lew-tealBright transition leading-snug">
+                                LEW Steel bags major infrastructure project
+                            </h3>
+                        </div>
+                    </article>
+
+                    <!-- News Card 2 -->
+                    <article onclick="openNewsModal(1)" class="bg-white rounded-xl overflow-hidden border border-[#DCE8F2] shadow-sm hover:shadow-card-hover transition-all duration-300 cursor-pointer group el-motion-fade-up" style="transition-delay: 100ms;">
+                        <div class="h-44 overflow-hidden bg-lew-ice">
+                            <img data-asset-name="05_conveyor_structure.jpg"
+                                 src="05_conveyor_structure.jpg" 
+                                 alt="Expansion of fabrication facilities in Kolkata" 
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                 onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=700&q=80';">
+                        </div>
+                        <div class="p-5">
+                            <time class="text-[11px] font-medium text-lew-slate block mb-1.5">Aug 22, 2025</time>
+                            <h3 class="text-sm sm:text-[15px] font-bold text-lew-navy group-hover:text-lew-tealBright transition leading-snug">
+                                Expansion of fabrication facilities in Kolkata
+                            </h3>
+                        </div>
+                    </article>
+
+                    <!-- News Card 3 -->
+                    <article onclick="openNewsModal(2)" class="bg-white rounded-xl overflow-hidden border border-[#DCE8F2] shadow-sm hover:shadow-card-hover transition-all duration-300 cursor-pointer group el-motion-fade-up" style="transition-delay: 200ms;">
+                        <div class="h-44 overflow-hidden bg-lew-ice">
+                            <img data-asset-name="09_elevated_steel_structure.jpg"
+                                 src="09_elevated_steel_structure.jpg" 
+                                 alt="Commitment to Quality and Safety" 
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                 onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=700&q=80';">
+                        </div>
+                        <div class="p-5">
+                            <time class="text-[11px] font-medium text-lew-slate block mb-1.5">Jul 15, 2025</time>
+                            <h3 class="text-sm sm:text-[15px] font-bold text-lew-navy group-hover:text-lew-tealBright transition leading-snug">
+                                Commitment to Quality and Safety
+                            </h3>
+                        </div>
+                    </article>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================================
+         8. PRE-FOOTER CTA BANNER ("Let's Build Something Extraordinary Together.")
+         ========================================================================= -->
+    <section class="cta-banner-bg text-white relative overflow-hidden py-8 sm:py-10">
+        <!-- Diagonal Lighter-Teal Geometric Stripes on Right (Exact Mockup Detail) -->
+        <div class="absolute inset-y-0 right-[18%] w-24 bg-white/10 -skew-x-[32deg] pointer-events-none"></div>
+        <div class="absolute inset-y-0 right-[12%] w-10 bg-lew-cyan/25 -skew-x-[32deg] pointer-events-none"></div>
+        <div class="absolute inset-y-0 right-[5%] w-16 bg-white/5 -skew-x-[32deg] pointer-events-none"></div>
+
+        <div class="max-w-[1320px] mx-auto px-4 sm:px-8 relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
+            
+            <!-- Left: Handshake Line-Art SVG + Heading & Subtext -->
+            <div class="flex items-center gap-5 text-center md:text-left flex-col sm:flex-row">
+                <svg class="w-13 h-13 text-white shrink-0" width="52" height="52" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <path d="M28 46C28 46 10 34.5 10 20.5C10 14.5 14.8 10 20.5 10C24.2 10 26.8 12 28 14.2C29.2 12 31.8 10 35.5 10C41.2 10 46 14.5 46 20.5C46 34.5 28 46 28 46Z" stroke="white" stroke-linejoin="round"/>
+                    <path d="M16 25L23 32L39 18" stroke="#57C7F2" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <div>
+                    <h2 class="text-xl sm:text-2xl font-extrabold tracking-tight">
+                        Let's Build Something Extraordinary Together.
+                    </h2>
+                    <p class="text-xs sm:text-sm text-cyan-100 font-medium mt-1">
+                        Partner with LEW Steel for your next Engineering and Fabrication project.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Right: White "Contact Us ->" Button -->
+            <button onclick="openContactModal('Partnership & Project Consultation')" 
+                    class="bg-white hover:bg-lew-ice text-lew-navy font-extrabold text-xs sm:text-sm px-7 py-3.5 rounded-md shadow-md hover:shadow-lg transition-all duration-300 inline-flex items-center gap-2.5 shrink-0 group">
+                <span>Contact Us</span>
+                <i class="fa-solid fa-arrow-right text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
+            </button>
+
+        </div>
+    </section>
+
+    <!-- =========================================================================
+         9. FOOTER (EXACT LAYOUT & REAL LOKENATH ENGINEERING WORKS DETAILS)
+         ========================================================================= -->
+    <footer id="contact" class="footer-geometric-bg text-lew-navy border-t border-[#D5E4EF]">
+        <div class="max-w-[1320px] mx-auto px-4 sm:px-8 py-10 lg:py-12">
+            
+            <!-- Main 5-Column Contact & Brand Row with Vertical Hairline Dividers -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-4 items-center pb-10 border-b border-[#CFE0EC]">
+                
+                <!-- 1. LEW STEEL Brand Logo (3 Cols) -->
+                <div class="lg:col-span-3 flex items-center justify-start lg:border-r lg:border-[#CFE0EC] lg:pr-6">
+                    <a href="#top" class="inline-block">
+                        <svg viewBox="0 0 215 62" class="h-11 w-auto" aria-label="LEW STEEL Logo">
+                            <g transform="translate(2, 6)">
+                                <polygon points="24,2 34,2 13,44 2,44" fill="#1282A8"/>
+                                <polygon points="27,8 48,44 36,44 21,18" fill="#062F43"/>
+                                <polygon points="17,33 34,33 39,44 12,44" fill="#062F43"/>
+                                <polygon points="18,30 33,30 35,34 16,34" fill="#EDF3F8"/>
+                            </g>
+                            <text x="64" y="34" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="31" fill="#062F43" letter-spacing="1.5">LEW</text>
+                            <text x="65" y="51" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="11.5" fill="#0B5E80" letter-spacing="7.2">STEEL</text>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- 2. Email: info@lewsteel.com (2.5 Cols) -->
+                <div class="lg:col-span-2 flex items-center gap-3 lg:justify-center">
+                    <i class="fa-solid fa-envelope text-lew-navy text-base"></i>
+                    <a href="mailto:info@lewsteel.com" class="text-xs sm:text-[13.5px] font-bold text-lew-navy hover:text-lew-tealBright transition">
+                        info@lewsteel.com
+                    </a>
+                </div>
+
+                <!-- 3. Phone: +91 9903220017 (2.5 Cols) -->
+                <div class="lg:col-span-2 flex items-center gap-3 lg:justify-center">
+                    <i class="fa-solid fa-phone text-lew-navy text-base"></i>
+                    <a href="tel:+919903220017" class="text-xs sm:text-[13.5px] font-bold text-lew-navy hover:text-lew-tealBright transition">
+                        +91 9903220017
+                    </a>
+                </div>
+
+                <!-- 4. Address: 36/4 'F' Road, Belgachia, Howrah, West Bengal 711105 (3 Cols) -->
+                <div class="lg:col-span-3 flex items-start gap-3 lg:border-r lg:border-[#CFE0EC] lg:pr-6">
+                    <i class="fa-solid fa-location-dot text-lew-navy text-base mt-1"></i>
+                    <span class="text-xs sm:text-[13px] font-bold text-lew-navy leading-snug">
+                        36/4 'F' Road, Belgachia, Howrah,<br>
+                        West Bengal 711105
+                    </span>
+                </div>
+
+                <!-- 5. Social Icons: LinkedIn & YouTube (2 Cols) -->
+                <div class="lg:col-span-2 flex items-center lg:justify-center gap-3">
+                    <a href="#contact" onclick="openContactModal('Connect via LinkedIn')" aria-label="LinkedIn" 
+                       class="w-9 h-9 rounded-full bg-lew-navy hover:bg-lew-tealBright text-white flex items-center justify-center transition shadow-sm">
+                        <i class="fa-brands fa-linkedin-in text-sm"></i>
+                    </a>
+                    <a href="#contact" onclick="openContactModal('Video Tour Inquiry')" aria-label="YouTube" 
+                       class="w-9 h-9 rounded-full bg-lew-navy hover:bg-lew-tealBright text-white flex items-center justify-center transition shadow-sm">
+                        <i class="fa-brands fa-youtube text-sm"></i>
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- Bottom Copyright & Legal Links Row -->
+            <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-medium text-lew-slate">
+                <div>
+                    &copy; 2025 LEW Steel. All Rights Reserved.
+                </div>
+                <div class="flex items-center gap-3">
+                    <button onclick="openCompanyProfileModal()" class="hover:text-lew-navy transition">Privacy Policy</button>
+                    <span class="text-slate-300">|</span>
+                    <button onclick="openCompanyProfileModal()" class="hover:text-lew-navy transition">Terms of Use</button>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- =========================================================================
+         10. INTERACTIVE MODALS (SERVICE INSPECTOR, CONTACT/RFQ, PROFILE, ELEMENTOR KIT)
+         ========================================================================= -->
+
+    <!-- A. SERVICE SPECIFICATION QUICK-VIEW MODAL -->
+    <div id="service-detail-modal" class="fixed inset-0 z-50 bg-lew-navy/75 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white rounded-xl max-w-xl w-full overflow-hidden shadow-2xl border border-lew-border">
+            <div class="relative h-48 bg-lew-navy">
+                <img id="modal-service-img" src="" alt="Service Visual" class="w-full h-full object-cover opacity-80">
+                <div class="absolute inset-0 bg-gradient-to-t from-lew-navy via-lew-navy/40 to-transparent"></div>
+                <button onclick="closeServiceDetail()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/20 hover:bg-white text-white hover:text-lew-navy flex items-center justify-center transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <div class="absolute bottom-4 left-6 right-6 text-white">
+                    <span id="modal-service-tag" class="text-[10px] font-extrabold uppercase tracking-widest bg-lew-tealBright px-2.5 py-0.5 rounded">LEW STEEL FACILITY</span>
+                    <h3 id="modal-service-title" class="text-2xl font-extrabold mt-1">Steel Fabrication</h3>
+                </div>
+            </div>
+            <div class="p-6 space-y-4">
+                <p id="modal-service-desc" class="text-xs sm:text-sm text-lew-slate leading-relaxed font-body"></p>
+                <div class="bg-lew-ice rounded-lg p-4 border border-lew-border">
+                    <div class="text-[11px] font-extrabold uppercase tracking-wider text-lew-navy mb-2">Key Engineering Capabilities</div>
+                    <ul id="modal-service-specs" class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-lew-navy font-medium"></ul>
+                </div>
+                <div class="flex items-center justify-end gap-3 pt-2">
+                    <button onclick="closeServiceDetail()" class="px-4 py-2.5 rounded-md border border-lew-border text-xs font-bold text-lew-slate hover:bg-lew-ice">
+                        Close
+                    </button>
+                    <button id="modal-service-rfq-btn" class="bg-lew-tealDark hover:bg-lew-tealBright text-white text-xs font-bold px-5 py-2.5 rounded-md transition inline-flex items-center gap-2">
+                        <span>Request Quote for this Service</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- B. GET IN TOUCH / CONSULTATION MODAL -->
+    <div id="contact-modal" class="fixed inset-0 z-50 bg-lew-navy/75 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white rounded-xl max-w-lg w-full overflow-hidden shadow-2xl border border-lew-border">
+            <div class="bg-lew-navy text-white px-6 py-4 flex items-center justify-between">
+                <div>
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-lew-cyan block">LOKENATH ENGINEERING WORKS</span>
+                    <h3 class="text-lg font-extrabold">Schedule Engineering Consultation</h3>
+                </div>
+                <button onclick="closeContactModal()" class="text-slate-300 hover:text-white p-1">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <form onsubmit="submitContactForm(event)" class="p-6 space-y-4 text-xs sm:text-sm">
+                <div>
+                    <label class="block text-xs font-bold uppercase text-lew-navy mb-1">Inquiry Subject / Facility</label>
+                    <input type="text" id="contact-subject-input" value="General Engineering Inquiry" 
+                           class="w-full bg-lew-ice border border-lew-border rounded-md px-3.5 py-2.5 font-semibold text-lew-navy focus:outline-none focus:border-lew-tealBright">
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-lew-navy mb-1">Full Name *</label>
+                        <input type="text" required placeholder="Your Name" class="w-full border border-lew-border rounded-md px-3.5 py-2.5 focus:outline-none focus:border-lew-tealBright">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-lew-navy mb-1">Phone Number *</label>
+                        <input type="tel" required placeholder="+91 98XXX XXXXX" class="w-full border border-lew-border rounded-md px-3.5 py-2.5 focus:outline-none focus:border-lew-tealBright">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase text-lew-navy mb-1">Official Email *</label>
+                    <input type="email" required placeholder="you@company.com" class="w-full border border-lew-border rounded-md px-3.5 py-2.5 focus:outline-none focus:border-lew-tealBright">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase text-lew-navy mb-1">Project Requirements / Tonnage / Drawings</label>
+                    <textarea rows="3" placeholder="Tell us about your structural fabrication, girders, railway sleepers, conveyor structures, or pressure vessel requirements..." class="w-full border border-lew-border rounded-md px-3.5 py-2.5 focus:outline-none focus:border-lew-tealBright"></textarea>
+                </div>
+                <div class="flex items-center justify-end gap-3 pt-2">
+                    <button type="button" onclick="closeContactModal()" class="px-4 py-2.5 border border-lew-border rounded-md text-xs font-bold text-lew-slate hover:bg-lew-ice">Cancel</button>
+                    <button type="submit" class="bg-lew-tealDark hover:bg-lew-tealBright text-white font-bold text-xs px-6 py-2.5 rounded-md shadow transition">
+                        Send Inquiry &rarr;
+                    </button>
+                </div>
+            </form>
+
+            <div id="contact-success-banner" class="hidden bg-emerald-50 border-t border-emerald-200 px-6 py-3.5 text-xs text-emerald-900 font-medium">
+                <i class="fa-solid fa-circle-check text-emerald-600 mr-1.5"></i>
+                Thank you! Your inquiry has been logged for <strong>info@lewsteel.com</strong> (+91 9903220017).
+            </div>
+        </div>
+    </div>
+
+    <!-- C. ABOUT LEW STEEL & COMPANY PROFILE MODAL -->
+    <div id="company-profile-modal" class="fixed inset-0 z-50 bg-lew-navy/75 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white rounded-xl max-w-2xl w-full overflow-hidden shadow-2xl border border-lew-border">
+            <div class="bg-lew-navy text-white px-6 py-4 flex items-center justify-between">
+                <div>
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-lew-cyan block">A COMPANY OF QUALITY — WEST BENGAL</span>
+                    <h3 class="text-lg font-extrabold">LEW Steel (Lokenath Engineering Works)</h3>
+                </div>
+                <button onclick="closeCompanyProfileModal()" class="text-slate-300 hover:text-white p-1">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <div class="p-6 space-y-4 text-xs sm:text-sm text-lew-slate max-h-[75vh] overflow-y-auto">
+                <p class="leading-relaxed text-lew-navy font-medium">
+                    Welcome to <strong>LEW (Lokenath Engineering Works)</strong>, we feel the honor to serve you the best. Our company is one of the best fabricators of engineering jobs in <strong>West Bengal</strong>. The technology we use is capable of fulfilling the latest demands in the market. Our reputation and good customer relations has helped us grow well. Our firm strives to commit and keep delivering high quality and standards in this highly competitive industry.
+                </p>
+                <div class="bg-lew-ice p-4 rounded-lg border border-lew-border">
+                    <h4 class="font-extrabold text-xs uppercase tracking-wider text-lew-navy mb-2.5">All 11 Core Fabrication &amp; Manufacturing Facilities</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-lew-navy font-semibold">
+                        <div><i class="fa-solid fa-check text-lew-tealBright mr-1.5"></i>Railway channel sleeper</div>
+                        <div><i class="fa-solid fa-check text-lew-tealBright mr-1.5"></i>Pipe of (oil, gas &amp; air)</div>
+                        <div><i class="fa-solid fa-check text-lew-tealBright mr-1.5"></i>Towers and mast supply</div>
+                        <div><i class="fa-solid fa-check text-lew-tealBright mr-1.5"></i>Fabricated girder</div>
+                        <div><i class="fa-solid fa-check text-lew-tealBright mr-1.5"></i>Structure for conveyor system</div>
+                        <div><i class="fa-solid fa-check text-lew-tealBright mr-1.5"></i>Manufacturing process equipments</div>
+                        <div><i class="fa-solid fa-check text-lew-tealBright mr-1.5"></i>Pressure vessels</div>
+                        <div><i class="fa-solid fa-check text-lew-tealBright mr-1.5"></i>Furnace spares</div>
+                        <div><i class="fa-solid fa-check text-lew-tealBright mr-1.5"></i>Boilers (small)</div>
+                        <div><i class="fa-solid fa-check text-lew-tealBright mr-1.5"></i>Annealing hood &amp; utility pipeline</div>
+                        <div><i class="fa-solid fa-check text-lew-tealBright mr-1.5"></i>Tanks &amp; Column</div>
+                    </div>
+                </div>
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2 border-t border-lew-border">
+                    <div class="text-xs text-lew-navy font-semibold">
+                        <i class="fa-solid fa-location-dot text-lew-tealBright mr-1"></i> 36/4 'F' Road, Belgachia, Howrah - 711105
+                    </div>
+                    <button onclick="downloadLEWProfile()" class="bg-lew-tealDark hover:bg-lew-tealBright text-white text-xs font-bold px-5 py-2.5 rounded-md transition inline-flex items-center gap-2">
+                        <i class="fa-solid fa-download"></i>
+                        <span>Download Company Profile (.TXT)</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- D. NEWS ARTICLE READER MODAL -->
+    <div id="news-reader-modal" class="fixed inset-0 z-50 bg-lew-navy/75 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white rounded-xl max-w-lg w-full overflow-hidden shadow-2xl border border-lew-border">
+            <img id="news-modal-img" src="" alt="News Banner" class="w-full h-48 object-cover">
+            <div class="p-6 space-y-3">
+                <div id="news-modal-date" class="text-xs font-bold text-lew-tealBright uppercase tracking-wider"></div>
+                <h3 id="news-modal-title" class="text-xl font-extrabold text-lew-navy"></h3>
+                <p id="news-modal-body" class="text-xs sm:text-sm text-lew-slate leading-relaxed font-body"></p>
+                <div class="pt-3 flex justify-end">
+                    <button onclick="closeNewsModal()" class="bg-lew-tealDark hover:bg-lew-tealBright text-white text-xs font-bold px-5 py-2.5 rounded-md transition">
+                        Close Article
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- E. FLOATING ELEMENTOR & WORDPRESS MOTION GUIDE + LOCAL ASSET UPLOADER BUTTONS -->
+    <input type="file" id="local-asset-file-input" multiple accept="image/*" class="hidden" onchange="handleLocalAssetUpload(event)">
+    <input type="file" id="single-image-swap-input" accept="image/*" class="hidden" onchange="handleSingleImageSwap(event)">
+
+    <div class="fixed bottom-4 right-4 z-40 flex flex-wrap items-center gap-2">
+        <button onclick="document.getElementById('local-asset-file-input').click()" 
+                title="Select your unzipped LEW_Steel_Separate_Website_Images files or click any image while holding Alt to swap it"
+                class="bg-lew-tealBright hover:bg-lew-navy text-white text-xs font-bold px-4 py-2.5 rounded-full shadow-lg border border-white/20 flex items-center gap-2 transition-all duration-300">
+            <i class="fa-solid fa-images text-white text-sm"></i>
+            <span id="asset-loader-status">Swap / Load Local Images</span>
+        </button>
+
+        <button onclick="toggleElementorModal()" 
+                class="bg-lew-navy hover:bg-lew-tealBright text-white text-xs font-bold px-4 py-2.5 rounded-full shadow-lg border border-white/20 flex items-center gap-2 transition-all duration-300">
+            <i class="fa-brands fa-elementor text-lew-cyan text-sm"></i>
+            <span>Elementor Motion &amp; WP Guide</span>
+        </button>
+    </div>
+
+    <div id="elementor-guide-modal" class="fixed inset-0 z-50 bg-lew-navy/80 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white rounded-xl max-w-2xl w-full overflow-hidden shadow-2xl border border-lew-border">
+            <div class="bg-lew-navy text-white px-6 py-4 flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                    <i class="fa-brands fa-wordpress text-lew-cyan text-xl"></i>
+                    <div>
+                        <h3 class="text-base font-extrabold">WordPress + Elementor Replication Guide (Hostinger)</h3>
+                        <p class="text-[11px] text-cyan-200">Exact Motion Effects, Clip-Paths &amp; Expandable Services Setup</p>
+                    </div>
+                </div>
+                <button onclick="toggleElementorModal()" class="text-slate-300 hover:text-white p-1">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <div class="p-6 space-y-4 text-xs text-lew-slate max-h-[75vh] overflow-y-auto">
+                <div class="bg-lew-ice p-3.5 rounded-lg border border-lew-border space-y-1.5">
+                    <div class="font-extrabold text-lew-navy uppercase">1. Elementor Motion Effects Used on This Page:</div>
+                    <p>&bull; <strong>Hero Steel Structure &amp; About Truss Image:</strong> In Elementor, go to <em>Advanced &rarr; Motion Effects &rarr; Scrolling Effects &rarr; Vertical Scroll (Speed: 2, Viewport: 10%–90%)</em>.</p>
+                    <p>&bull; <strong>Section Cards &amp; Stats:</strong> Set <em>Entrance Animation</em> to <code>Fade In Up</code> with staggered <em>Animation Delay</em> (<code>0ms</code>, <code>80ms</code>, <code>160ms</code>) and use Elementor's native <em>Counter Widget</em> for <code>15+</code>, <code>200+</code>, <code>100+</code>.</p>
+                    <p>&bull; <strong>Expandable "View All Services" Section:</strong> Create an inner Container with CSS ID <code>more-services-wrapper</code> and attach the toggle button to the snippet below.</p>
+                </div>
+
+                <div>
+                    <div class="flex items-center justify-between mb-1.5">
+                        <span class="font-extrabold text-lew-navy uppercase">2. Copy-Paste Elementor Custom CSS (Diagonal Cuts &amp; Colors):</span>
+                        <button onclick="copyElementorCode()" id="copy-el-btn" class="bg-lew-tealBright hover:bg-lew-navy text-white px-3 py-1 rounded text-[11px] font-bold transition">
+                            <i class="fa-regular fa-copy mr-1"></i> Copy CSS
+                        </button>
+                    </div>
+                    <pre id="elementor-css-block" class="bg-[#042231] text-cyan-200 p-3.5 rounded-lg font-mono text-[11px] overflow-x-auto"><code>/* LEW Steel Global Colors & Diagonal Clip-Paths for Elementor */
+:root {
+  --e-global-color-primary: #062F43;
+  --e-global-color-secondary: #0E769B;
+  --e-global-color-accent: #1589B8;
+  --e-global-color-background: #EDF4F9;
+}
+.hero-diagonal-photo-wrap {
+  clip-path: polygon(24% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+.about-diagonal-photo-wrap {
+  clip-path: polygon(0% 0%, 100% 0%, 76% 100%, 0% 100%);
+}
+.stats-angled-bar {
+  background: linear-gradient(90deg, #062F43 0%, #0A4B69 50%, #062F43 100%);
+  clip-path: polygon(28px 0%, 100% 0%, 100% 100%, 0% 100%);
+}</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================================================
+         JAVASCRIPT ENGINE: EXPANDABLE SERVICES, ELEMENTOR PARALLAX & MODALS
+         ========================================================================= -->
+    <script>
+        /* 1. ALL 11 LEW STEEL SERVICES DATA FOR QUICK-VIEW MODAL */
+        const lewServicesData = [
+            {
+                title: "Steel Fabrication",
+                tag: "CORE STRUCTURAL DIVISION",
+                img: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=900&q=80",
+                desc: "Heavy and medium structural steel fabrication engineered in our Howrah facility for industrial plants, railway bridges, commercial complexes, and infrastructure projects across West Bengal and India.",
+                specs: ["CNC Plasma & Oxy-Fuel Cutting", "Submerged Arc Welding (SAW)", "Shot Blasting & Epoxy Coating", "IS:2062 & ASTM A36 Compliant"]
+            },
+            {
+                title: "Structural Engineering",
+                tag: "ENGINEERING & DESIGN",
+                img: "https://images.unsplash.com/photo-1590674899484-d5640e854abe?auto=format&fit=crop&w=900&q=80",
+                desc: "End-to-end 3D structural detailing, connection design, stress analysis, and erection engineering for complex industrial pipe racks, trusses, and multi-story steel buildings.",
+                specs: ["3D Tekla / AutoCAD Detailing", "Heavy Pipe Rack Engineering", "Seismic & Wind Load Compliance", "Zero-Tolerance Shop Drawings"]
+            },
+            {
+                title: "Industrial Solutions",
+                tag: "TURNKEY PLANT SOLUTIONS",
+                img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=80",
+                desc: "Custom-manufactured process equipment, heavy plant enclosures, turbine foundations, and turnkey factory buildings tailored to steel, power, and petrochemical industries.",
+                specs: ["Manufacturing Process Equipments", "Heavy Sheds & EOT Crane Bays", "Plant Revamp & Expansion", "On-Site Erection Support"]
+            },
+            {
+                title: "Conveyor Structures",
+                tag: "BULK MATERIAL HANDLING",
+                img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=900&q=80",
+                desc: "Complete structural fabrication for bulk material handling conveyor systems including closed/open galleries, transfer towers, trestles, and stringer frames.",
+                specs: ["Long-Span Conveyor Galleries", "Junction & Transfer Towers", "Heavy Trestles & Walkways", "Mining & Port Material Handling"]
+            },
+            {
+                title: "Pressure Vessels",
+                tag: "PROCESS & STORAGE VESSELS",
+                img: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=900&q=80",
+                desc: "Precision-rolled and welded cylindrical pressure vessels, air receivers, and reaction vessels subjected to rigorous non-destructive and hydrostatic testing.",
+                specs: ["Hydro-Tested Pressure Shells", "Radiographic Weld Inspection", "Dish Ends & Flanged Nozzles", "Oil, Gas & Chemical Grade"]
+            },
+            {
+                title: "Railway Channel Sleepers",
+                tag: "RAILWAY INFRASTRUCTURE",
+                img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=900&q=80",
+                desc: "Specialized fabrication of steel channel sleepers and bridge fittings engineered to Indian Railways standards for girder bridges and heavy-axle track sections.",
+                specs: ["RDSO / Railway Spec Fabrication", "Jig-Drilled Rail Fastener Holes", "Hot-Dip Galvanized / Metallized", "High Fatigue Resistance"]
+            },
+            {
+                title: "Pipes of (Oil, Gas & Air)",
+                tag: "INDUSTRIAL PIPING SYSTEMS",
+                img: "https://images.unsplash.com/photo-1535813547-99c456a41d4a?auto=format&fit=crop&w=900&q=80",
+                desc: "Fabrication and supply of large-diameter spirally/longitudinally welded steel pipes, headers, and manifolds for oil, industrial gas, and compressed air utilities.",
+                specs: ["Oil, Gas & Compressed Air Lines", "Custom Spools & Reducers", "High-Pressure Butt Welding", "Internal & External Coating"]
+            },
+            {
+                title: "Towers & Mast Supply",
+                tag: "TELECOM & TRANSMISSION",
+                img: "https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&w=900&q=80",
+                desc: "Complete fabrication and supply of angular and tubular lattice steel towers, power transmission structures, and high-mast lighting systems.",
+                specs: ["Transmission & Telecom Towers", "Substation Gantry Structures", "Trial Assembly Tested", "Weatherproof Galvanized Finish"]
+            },
+            {
+                title: "Fabricated Girders",
+                tag: "HEAVY BRIDGE & CRANE GIRDERS",
+                img: "https://images.unsplash.com/photo-1541888946425-d09bb18086f6?auto=format&fit=crop&w=900&q=80",
+                desc: "Heavy welded H-beams, box girders, crane runway girders, and railway/road bridge plate girders fabricated with camber control and ultrasonic testing.",
+                specs: ["Welded Plate & Box Girders", "EOT Crane Gantry Girders", "Ultrasonic & MPI Weld Tested", "Custom Heavy Span Fabrication"]
+            },
+            {
+                title: "Furnace Spares & Small Boilers",
+                tag: "THERMAL & METALLURGICAL",
+                img: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=900&q=80",
+                desc: "Heat-resistant alloy and carbon steel furnace spares, water-cooled jackets, charging doors, dampers, and compact industrial steam boilers.",
+                specs: ["Furnace Doors & Water Jackets", "Industrial Small Boilers", "Heat-Resistant Alloy Fabrication", "Economizer & Flue Ducting"]
+            },
+            {
+                title: "Annealing Hoods, Tanks & Columns",
+                tag: "METALLURGICAL & STORAGE",
+                img: "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?auto=format&fit=crop&w=900&q=80",
+                desc: "Custom-engineered steel annealing hoods with interconnected utility service pipelines, alongside vertical/horizontal storage tanks and process columns.",
+                specs: ["Bell Furnace Annealing Hoods", "Utility Service Pipelines", "Vertical Storage Tanks", "Distillation & Process Columns"]
+            }
+        ];
+
+        /* 2. EXPAND / COLLAPSE ALL SERVICES DRAWER ("View All Services ->") */
+        let servicesExpanded = false;
+        function toggleAllServices() {
+            const wrapper = document.getElementById('more-services-wrapper');
+            const label = document.getElementById('toggle-services-label');
+            const badge = document.getElementById('toggle-services-badge');
+            const icon = document.getElementById('toggle-services-icon');
+
+            servicesExpanded = !servicesExpanded;
+            if (servicesExpanded) {
+                wrapper.classList.add('expanded');
+                label.textContent = 'Show Less Services';
+                badge.textContent = 'All 11 Active';
+                icon.classList.remove('fa-arrow-right');
+                icon.classList.add('fa-chevron-up');
+            } else {
+                wrapper.classList.remove('expanded');
+                label.textContent = 'View All Services';
+                badge.textContent = '+6 More';
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-arrow-right');
+            }
+        }
+
+        function expandAllServicesAndScroll(e) {
+            if (e) e.preventDefault();
+            if (!servicesExpanded) {
+                toggleAllServices();
+            }
+            document.getElementById('more-services-wrapper').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        /* 3. SERVICE QUICK-VIEW MODAL FUNCTIONS */
+        function openServiceDetail(index) {
+            const item = lewServicesData[index];
+            if (!item) return;
+
+            document.getElementById('modal-service-img').src = item.img;
+            document.getElementById('modal-service-tag').textContent = item.tag;
+            document.getElementById('modal-service-title').textContent = item.title;
+            document.getElementById('modal-service-desc').textContent = item.desc;
+
+            const specsList = document.getElementById('modal-service-specs');
+            specsList.innerHTML = item.specs.map(s => `<li><i class="fa-solid fa-circle-check text-lew-tealBright mr-1.5"></i>${s}</li>`).join('');
+
+            const rfqBtn = document.getElementById('modal-service-rfq-btn');
+            rfqBtn.onclick = function () {
+                closeServiceDetail();
+                openContactModal('RFQ: ' + item.title);
+            };
+
+            const modal = document.getElementById('service-detail-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeServiceDetail() {
+            const modal = document.getElementById('service-detail-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        /* 4. PROJECTS CAROUSEL SLIDES (Mapped to Uploaded Assets + Verified Fallbacks) */
+        const projectSlides = [
+            [
+                { img: "07_refinery_plant.jpg", fallback: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=700&q=80", caption: "Process Columns & Towers" },
+                { img: "08_steel_building_project.jpg", fallback: "https://images.unsplash.com/photo-1541888946425-d09bb18086f6?auto=format&fit=crop&w=700&q=80", caption: "Multi-Bay Steel Structure" },
+                { img: "09_elevated_steel_structure.jpg", fallback: "https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&w=700&q=80", caption: "Heavy Girders & Conveyor Bay" }
+            ],
+            [
+                { img: "03_industrial_pipelines.jpg", fallback: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=700&q=80", caption: "Oil, Gas & Air Pipeline Bridge" },
+                { img: "05_conveyor_structure.jpg", fallback: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=700&q=80", caption: "Bulk Material Conveyor Gallery" },
+                { img: "01_steel_framework_closeup.jpg", fallback: "https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&w=700&q=80", caption: "High-Mast & Transmission Towers" }
+            ],
+            [
+                { img: "02_steel_building_exterior.jpg", fallback: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=700&q=80", caption: "Railway Bridge Channel Sleepers" },
+                { img: "06_pressure_vessels.jpg", fallback: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=700&q=80", caption: "Annealing Hoods & Process Vessels" },
+                { img: "04_industrial_facility.jpg", fallback: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=700&q=80", caption: "Furnace Spares & Industrial Boilers" }
+            ]
+        ];
+        let currentProjectSlide = 0;
+        const uploadedAssetBlobMap = {};
+
+        function setProjectSlide(slideIdx) {
+            currentProjectSlide = slideIdx;
+            const set = projectSlides[slideIdx];
+            set.forEach((item, idx) => {
+                const imgEl = document.getElementById(`proj-img-${idx}`);
+                const capEl = document.getElementById(`proj-caption-${idx}`);
+                if (imgEl && capEl) {
+                    imgEl.style.opacity = '0.3';
+                    setTimeout(() => {
+                        imgEl.setAttribute('data-asset-name', item.img);
+                        imgEl.onerror = function () {
+                            this.onerror = null;
+                            this.src = item.fallback;
+                        };
+                        imgEl.src = uploadedAssetBlobMap[item.img.toLowerCase()] || item.img;
+                        capEl.textContent = item.caption;
+                        imgEl.style.opacity = '1';
+                    }, 160);
+                }
+            });
+
+            [0, 1, 2].forEach(i => {
+                const dot = document.getElementById(`proj-dot-${i}`);
+                if (i === slideIdx) {
+                    dot.className = "w-2.5 h-2.5 rounded-full bg-lew-cyan transition-all";
+                } else {
+                    dot.className = "w-2.5 h-2.5 rounded-full border border-slate-300 bg-transparent hover:border-lew-cyan transition-all";
+                }
+            });
+        }
+
+        function cycleProjectsSlide() {
+            const next = (currentProjectSlide + 1) % projectSlides.length;
+            setProjectSlide(next);
+        }
+
+        function openProjectLightbox(cardIdx) {
+            const item = projectSlides[currentProjectSlide][cardIdx];
+            openServiceDetail((currentProjectSlide * 3 + cardIdx) % lewServicesData.length);
+        }
+
+        /* 5. NEWS MODAL DATA & HANDLERS */
+        const lewNewsArticles = [
+            {
+                date: "Sep 10, 2025",
+                title: "LEW Steel bags major infrastructure project",
+                img: "https://images.unsplash.com/photo-1541888946425-d09bb18086f6?auto=format&fit=crop&w=800&q=80",
+                body: "Lokenath Engineering Works (LEW Steel) has been awarded a major structural steel fabrication contract comprising heavy fabricated girders, railway channel sleepers, and conveyor support structures in Eastern India."
+            },
+            {
+                date: "Aug 22, 2025",
+                title: "Expansion of fabrication facilities in Kolkata",
+                img: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80",
+                body: "To meet rising industrial demand for pressure vessels, annealing hoods, and oil/gas utility pipelines, LEW Steel has upgraded its Howrah (36/4 'F' Road, Belgachia) fabrication bays with automated welding and CNC cutting lines."
+            },
+            {
+                date: "Jul 15, 2025",
+                title: "Commitment to Quality and Safety",
+                img: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=800&q=80",
+                body: "Operating on our core principle of 'Zero Compromise on Quality', every fabricated girder, boiler assembly, and transmission tower undergoes multi-stage dimensional and ultrasonic quality verification before dispatch."
+            }
+        ];
+
+        function openNewsModal(idx) {
+            const article = lewNewsArticles[idx];
+            if (!article) return;
+            document.getElementById('news-modal-img').src = article.img;
+            document.getElementById('news-modal-date').textContent = article.date;
+            document.getElementById('news-modal-title').textContent = article.title;
+            document.getElementById('news-modal-body').textContent = article.body;
+            const modal = document.getElementById('news-reader-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeNewsModal() {
+            const modal = document.getElementById('news-reader-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        /* 6. CONTACT, PROFILE & ELEMENTOR GUIDE MODALS */
+        function openContactModal(subjectText) {
+            document.getElementById('contact-success-banner').classList.add('hidden');
+            if (subjectText) {
+                document.getElementById('contact-subject-input').value = subjectText;
+            }
+            const modal = document.getElementById('contact-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeContactModal() {
+            const modal = document.getElementById('contact-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function submitContactForm(e) {
+            e.preventDefault();
+            document.getElementById('contact-success-banner').classList.remove('hidden');
+        }
+
+        function openCompanyProfileModal() {
+            const modal = document.getElementById('company-profile-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeCompanyProfileModal() {
+            const modal = document.getElementById('company-profile-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function downloadLEWProfile() {
+            const content = [
+                "LEW STEEL (LOKENATH ENGINEERING WORKS) - A COMPANY OF QUALITY",
+                "Website: www.lewsteel.com",
+                "Address: 36/4 'F' Road, Belgachia, Howrah, West Bengal - 711105",
+                "Email: info@lewsteel.com | Phone: +91 9903220017",
+                "",
+                "OVERVIEW:",
+                "15+ Years of Experience | 200+ Projects Delivered | 100+ Happy Clients | Zero Compromise on Quality",
+                "",
+                "CORE FABRICATION & ENGINEERING FACILITIES:",
+                "1. Steel Fabrication & Structural Engineering",
+                "2. Railway channel sleeper",
+                "3. Pipe of (oil, gas & air)",
+                "4. Towers and mast supply",
+                "5. Fabricated girder",
+                "6. Structure for conveyor system",
+                "7. Manufacturing process equipments",
+                "8. Pressure vessels",
+                "9. Furnace spares",
+                "10. Boilers (small)",
+                "11. Annealing hood, utility service pipelines, Tanks & Column"
+            ].join("\n");
+
+            const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'LEW_Steel_Company_Profile.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function toggleMobileMenu() {
+            const drawer = document.getElementById('mobile-menu-drawer');
+            const icon = document.getElementById('mobile-menu-icon');
+            if (!drawer) return;
+            drawer.classList.toggle('hidden');
+            if (icon) {
+                icon.className = drawer.classList.contains('hidden')
+                    ? 'fa-solid fa-bars text-xl'
+                    : 'fa-solid fa-xmark text-xl';
+            }
+        }
+
+        function toggleElementorModal() {
+            const modal = document.getElementById('elementor-guide-modal');
+            if (!modal) return;
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            } else {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        }
+
+        function copyElementorCode() {
+            const codeBlock = document.getElementById('elementor-css-block');
+            const btn = document.getElementById('copy-el-btn');
+            if (!codeBlock) return;
+            const textarea = document.createElement('textarea');
+            textarea.value = codeBlock.innerText;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            if (btn) {
+                btn.innerHTML = '<i class="fa-solid fa-check mr-1"></i> Copied!';
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="fa-regular fa-copy mr-1"></i> Copy CSS';
+                }, 2000);
+            }
+        }
+
+        /* 7. SCROLL PROGRESS & PARALLAX MOTION ENGINE */
+        window.addEventListener('scroll', function () {
+            const scrollY = window.scrollY || window.pageYOffset;
+            const docHeight = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+            const progress = Math.min(100, Math.max(0, (scrollY / docHeight) * 100));
+
+            const progressBar = document.getElementById('scroll-progress-bar');
+            if (progressBar) {
+                progressBar.style.width = progress + '%';
+            }
+
+            const heroImg = document.getElementById('hero-parallax-img');
+            if (heroImg && scrollY < 900) {
+                heroImg.style.transform = `scale(1.06) translateY(${scrollY * 0.08}px)`;
+            }
+
+            const aboutImg = document.getElementById('about-parallax-img');
+            if (aboutImg && scrollY > 150 && scrollY < 1600) {
+                aboutImg.style.transform = `scale(1.1) translateY(${(scrollY - 500) * 0.05}px)`;
+            }
+        }, { passive: true });
+
+        /* 8. INITIALIZE SMOOTH ANCHOR OFFSET, IMAGE SWAPPER & ENTRANCE ANIMATIONS */
+        let activeImageToSwap = null;
+
+        function handleLocalAssetUpload(event) {
+            const files = Array.from(event.target.files || []);
+            if (!files.length) return;
+
+            let matchedCount = 0;
+            files.forEach(file => {
+                const url = URL.createObjectURL(file);
+                const cleanName = file.name.trim().toLowerCase();
+                uploadedAssetBlobMap[cleanName] = url;
+
+                document.querySelectorAll('img[data-asset-name]').forEach(img => {
+                    const targetName = (img.getAttribute('data-asset-name') || '').trim().toLowerCase();
+                    if (targetName === cleanName) {
+                        img.src = url;
+                        matchedCount++;
+                    }
+                });
+            });
+
+            // If user selected arbitrary images that don't match the exact filenames, apply them sequentially to visible cards
+            if (matchedCount === 0 && files.length > 0) {
+                const allTargets = document.querySelectorAll('img[data-asset-name]');
+                files.forEach((file, idx) => {
+                    if (allTargets[idx]) {
+                        allTargets[idx].src = URL.createObjectURL(file);
+                        matchedCount++;
+                    }
+                });
+            }
+
+            const statusEl = document.getElementById('asset-loader-status');
+            if (statusEl) {
+                statusEl.textContent = `Loaded ${files.length} Image(s)!`;
+                setTimeout(() => {
+                    statusEl.textContent = 'Swap / Load Local Images';
+                }, 3000);
+            }
+        }
+
+        function handleSingleImageSwap(event) {
+            const file = (event.target.files || [])[0];
+            if (file && activeImageToSwap) {
+                activeImageToSwap.src = URL.createObjectURL(file);
+                activeImageToSwap = null;
+            }
+        }
+
+        window.onload = function () {
+            // Smooth Scroll Interceptor for all <a href="#..."> links with exact 96px Sticky Header Offset
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const targetId = this.getAttribute('href');
+                    if (!targetId || targetId === '#') return;
+                    const targetEl = document.querySelector(targetId);
+                    if (targetEl) {
+                        e.preventDefault();
+                        const y = targetEl.getBoundingClientRect().top + window.scrollY - 96;
+                        window.scrollTo({
+                            top: Math.max(0, y),
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Allow Alt+Click on any image to swap that specific image from disk
+            document.querySelectorAll('img').forEach(img => {
+                img.addEventListener('click', function (e) {
+                    if (e.altKey) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        activeImageToSwap = this;
+                        document.getElementById('single-image-swap-input').click();
+                    }
+                });
+            });
+
+            const animatedElements = document.querySelectorAll('.el-motion-fade-up, .el-motion-fade-left, .el-motion-fade-right, .el-motion-scale');
+            const motionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('el-motion-visible');
+                    }
+                });
+            }, { threshold: 0.14 });
+
+            animatedElements.forEach(el => motionObserver.observe(el));
+
+            // Animate the 15+, 200+, 100+ Counters when Stats Banner enters viewport
+            let countersRun = false;
+            const statsBanner = document.getElementById('stats-banner');
+            if (statsBanner) {
+                const counterObserver = new IntersectionObserver((entries) => {
+                    if (entries[0].isIntersecting && !countersRun) {
+                        countersRun = true;
+                        document.querySelectorAll('.stat-counter').forEach(counter => {
+                            const target = parseInt(counter.getAttribute('data-target'), 10);
+                            let current = 0;
+                            const step = Math.max(1, Math.ceil(target / 40));
+                            const timer = setInterval(() => {
+                                current += step;
+                                if (current >= target) {
+                                    counter.textContent = target;
+                                    clearInterval(timer);
+                                } else {
+                                    counter.textContent = current;
+                                }
+                            }, 28);
+                        });
+                    }
+                }, { threshold: 0.3 });
+                counterObserver.observe(statsBanner);
+            }
+        };
+    </script>
+</body>
+</html>
